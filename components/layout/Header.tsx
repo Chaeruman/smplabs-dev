@@ -4,12 +4,14 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,8 +29,8 @@ const Header = () => {
       hasDropdown: true,
       dropdownItems: [
         { href: "/tentang", label: "Tentang Sekolah" },
-        { href: "/tentang#visi", label: "Visi" },
-        { href: "/tentang#misi", label: "Misi" },
+        { href: "/tentang#visi", label: "Visi", section: "visi" },
+        { href: "/tentang#misi", label: "Misi", section: "misi" },
       ],
     },
     { href: "/galeri", label: "Galeri" },
@@ -37,19 +39,31 @@ const Header = () => {
     { href: "/kontak", label: "Kontak" },
   ]
 
-  const handleDropdownClick = (href: string) => {
-    if (href.includes("#")) {
-      const [path, section] = href.split("#")
-      if (window.location.pathname === path || path === "/tentang") {
+  const handleDropdownClick = (href: string, section?: string) => {
+    setIsAboutDropdownOpen(false)
+
+    if (section) {
+      // If we're already on the tentang page, just scroll to section
+      if (window.location.pathname === "/tentang") {
         const element = document.getElementById(section)
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" })
+          element.scrollIntoView({ behavior: "smooth", block: "start" })
         }
       } else {
-        window.location.href = href
+        // Navigate to tentang page first, then scroll to section
+        router.push("/tentang")
+        // Wait for navigation to complete, then scroll
+        setTimeout(() => {
+          const element = document.getElementById(section)
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth", block: "start" })
+          }
+        }, 100)
       }
+    } else {
+      // Regular navigation
+      router.push(href)
     }
-    setIsAboutDropdownOpen(false)
   }
 
   const handleMouseEnter = () => {
@@ -109,7 +123,7 @@ const Header = () => {
                           {item.dropdownItems?.map((dropdownItem, index) => (
                             <button
                               key={dropdownItem.href}
-                              onClick={() => handleDropdownClick(dropdownItem.href)}
+                              onClick={() => handleDropdownClick(dropdownItem.href, dropdownItem.section)}
                               className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-colors duration-200"
                             >
                               {dropdownItem.label}
@@ -167,7 +181,7 @@ const Header = () => {
                             <button
                               key={dropdownItem.href}
                               onClick={() => {
-                                handleDropdownClick(dropdownItem.href)
+                                handleDropdownClick(dropdownItem.href, dropdownItem.section)
                                 setIsMenuOpen(false)
                                 setIsAboutDropdownOpen(false)
                               }}

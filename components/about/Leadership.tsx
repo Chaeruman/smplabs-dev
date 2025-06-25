@@ -27,26 +27,29 @@ const Leadership = () => {
 
   const leaders = [
     {
-      name: "Dr. Ahmad Wijaya, M.Pd",
+      name: "Dr. Yati Suwartini, M.Pd",
       position: "Kepala Sekolah",
       image: "/placeholder.svg?height=300&width=300",
-      description: "Memimpin dengan visi pendidikan yang inovatif dan berpengalaman lebih dari 20 tahun.",
+      description:
+        "Memimpin dengan visi pendidikan yang inovatif dan berpengalaman lebih dari 20 tahun dalam dunia pendidikan.",
       email: "kepala@smplabschool.sch.id",
       phone: "(021) 1234-5678",
     },
     {
-      name: "Siti Nurhaliza, S.Pd, M.M",
-      position: "Wakil Kepala Sekolah",
+      name: "Pandu Novialdi, M.Pd",
+      position: "Wakil Kepala Bidang Akademik",
       image: "/placeholder.svg?height=300&width=300",
-      description: "Mengkoordinasikan program akademik dan pengembangan kurikulum.",
-      email: "wakil@smplabschool.sch.id",
+      description:
+        "Mengkoordinasikan program akademik dan pengembangan kurikulum untuk mencapai standar pendidikan terbaik.",
+      email: "akademik@smplabschool.sch.id",
       phone: "(021) 1234-5679",
     },
     {
-      name: "Budi Santoso, S.Pd",
-      position: "Koordinator Kesiswaan",
+      name: "Trezadigjaya, S.Pd., M.Si",
+      position: "Wakil Kepala Bidang Kesiswaan",
       image: "/placeholder.svg?height=300&width=300",
-      description: "Membina dan mengembangkan potensi siswa melalui berbagai kegiatan.",
+      description:
+        "Membina dan mengembangkan potensi siswa melalui berbagai kegiatan kesiswaan dan pengembangan karakter.",
       email: "kesiswaan@smplabschool.sch.id",
       phone: "(021) 1234-5680",
     },
@@ -60,7 +63,7 @@ const Leadership = () => {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Tim Kepemimpinan</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Para pemimpin berpengalaman yang berkomitmen untuk kemajuan pendidikan
+            Para pemimpin berpengalaman yang berkomitmen untuk kemajuan pendidikan dan pengembangan siswa
           </p>
         </div>
 

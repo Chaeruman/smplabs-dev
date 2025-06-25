@@ -38,15 +38,15 @@ const AboutHero = () => {
           >
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=400&width=600"
-                alt="SMP Labschool Jakarta Building"
+                src="/kegiatan-sekolah.jpg"
+                alt="Kegiatan Siswa SMP Labschool Jakarta"
                 width={600}
                 height={400}
-                className="rounded-2xl shadow-2xl"
+                className="rounded-2xl shadow-2xl object-cover"
               />
               <div className="absolute -bottom-6 -right-6 bg-gradient-to-br from-white to-blue-50 p-6 rounded-xl shadow-lg border border-blue-200">
-                <h4 className="font-bold text-blue-900 mb-2">Akreditasi A</h4>
-                <p className="text-gray-600 text-sm">Terakreditasi Unggul</p>
+                <h4 className="font-bold text-blue-900 mb-2">Kegiatan Aktif</h4>
+                <p className="text-gray-600 text-sm">Pembelajaran di Alam Terbuka</p>
               </div>
             </div>
           </div>
