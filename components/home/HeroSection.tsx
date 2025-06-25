@@ -17,13 +17,13 @@ const HeroSection = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/placeholder.svg?height=1080&width=1920"
-          alt="SMP Labschool Jakarta"
+          src="/banner-labschool.jpg"
+          alt="SMP Labschool Jakarta Building"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 via-purple-600/70 to-blue-800/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-800/60 to-blue-700/70"></div>
       </div>
 
       {/* Content */}
@@ -40,11 +40,17 @@ const HeroSection = () => {
             Menciptakan lingkungan pendidikan yang positif, bersemangat, serta menginspirasi
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/tentang" className="btn-primary group">
-              Pelajari Lebih Lanjut
-              <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            <Link
+              href="/tentang"
+              className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap group"
+            >
+              <span className="mr-2">Pelajari Lebih Lanjut</span>
+              <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </Link>
-            <Link href="/kontak" className="btn-secondary">
+            <Link
+              href="/kontak"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/30 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
+            >
               Hubungi Kami
             </Link>
           </div>

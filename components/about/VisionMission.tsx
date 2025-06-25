@@ -1,14 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { Eye, Target, CheckCircle } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Target, Lightbulb, CheckCircle } from "lucide-react"
 
 const VisionMission = () => {
-  const [isVisible, setIsVisible] = useState(false)
-  const [visibleMissions, setVisibleMissions] = useState<number[]>([])
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const [visibleItems, setVisibleItems] = useState<number[]>([])
 
-  const missions = [
+  const missionItems = [
     "Menjadi sekolah yang ramah anak, mengembangkan potensi peserta didik secara maksimal.",
     "Menciptakan iklim sekolah yang kondusif melalui komunikasi yang sehat antarwarga sekolah.",
     "Mendorong dan mendukung perkembangan peserta didik menjadi individu yang memiliki rasa ingin tahu, reflektif, dan kritis dalam pemikiran sebagai warga Indonesia dan global.",
@@ -21,82 +19,82 @@ const VisionMission = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          // Animate missions one by one
-          missions.forEach((_, index) => {
-            setTimeout(() => {
-              setVisibleMissions((prev) => [...prev, index])
-            }, index * 300)
-          })
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number.parseInt(entry.target.getAttribute("data-index") || "0")
+            setVisibleItems((prev) => [...prev, index])
+          }
+        })
       },
-      { threshold: 0.3 },
+      { threshold: 0.1 },
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    const elements = document.querySelectorAll(".mission-item")
+    elements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section ref={sectionRef} className="section-padding bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <div className="container-custom">
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">Visi & Misi Lengkap</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Landasan filosofis yang mengarahkan setiap langkah pendidikan di SMP Labschool Jakarta
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Vision */}
-          <div
-            className={`transition-all duration-1000 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
-          >
-            <div className="card-soft-green rounded-2xl p-8 shadow-lg hover-glow h-full">
-              <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center mr-4">
-                  <Eye className="h-8 w-8 text-blue-900" />
-                </div>
-                <h3 className="text-2xl font-bold text-blue-900">Visi Kami</h3>
-              </div>
-              <p className="text-gray-700 leading-relaxed text-lg">
-                Menciptakan lingkungan pendidikan yang positif, bersemangat, serta menginspirasi yang menghargai dan
-                mendorong peserta didik menjadi pembelajar sepanjang hayat.
-              </p>
+        {/* Vision Section */}
+        <div id="visi" className="mb-20 scroll-mt-20">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-6">
+              <Target className="h-8 w-8 text-white" />
             </div>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Visi Sekolah</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
           </div>
 
-          {/* Mission */}
-          <div
-            className={`transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
-          >
-            <div className="card-soft-indigo rounded-2xl p-8 shadow-lg hover-glow h-full">
-              <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-full flex items-center justify-center mr-4">
-                  <Target className="h-8 w-8 text-blue-900" />
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+              <div className="flex items-start space-x-4">
+                <div className="flex-shrink-0">
+                  <Lightbulb className="h-8 w-8 text-yellow-500" />
                 </div>
-                <h3 className="text-2xl font-bold text-blue-900">Misi Kami</h3>
+                <p className="text-lg text-gray-700 leading-relaxed font-medium">
+                  Menciptakan lingkungan pendidikan yang positif, bersemangat, serta menginspirasi yang menghargai dan
+                  mendorong peserta didik menjadi pembelajar sepanjang hayat.
+                </p>
               </div>
-              <ul className="space-y-4">
-                {missions.map((mission, index) => (
-                  <li
-                    key={index}
-                    className={`flex items-start space-x-3 transition-all duration-500 ${
-                      visibleMissions.includes(index) ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
-                    }`}
-                  >
-                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700 leading-relaxed">{mission}</span>
-                  </li>
-                ))}
-              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Mission Section */}
+        <div id="misi" className="scroll-mt-20">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mb-6">
+              <CheckCircle className="h-8 w-8 text-white" />
+            </div>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Misi Sekolah</h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-400 mx-auto rounded-full"></div>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            <div className="grid gap-6">
+              {missionItems.map((item, index) => (
+                <div
+                  key={index}
+                  data-index={index}
+                  className={`mission-item bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/20 transform transition-all duration-700 ${
+                    visibleItems.includes(index) ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">{index + 1}</span>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">{item}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

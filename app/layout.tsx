@@ -11,7 +11,10 @@ export const metadata: Metadata = {
   title: "SMP Labschool Jakarta - Sekolah Menengah Pertama Terdepan",
   description:
     "SMP Labschool Jakarta adalah sekolah menengah pertama yang berlokasi di Jakarta, menciptakan lingkungan pendidikan yang positif dan menginspirasi.",
-    generator: 'v0.dev'
+  generator: "v0.dev",
+  icons: {
+    icon: "/favicon.ico",
+  },
 }
 
 export default function RootLayout({
