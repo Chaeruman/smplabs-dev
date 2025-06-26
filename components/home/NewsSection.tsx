@@ -177,17 +177,6 @@ const NewsSection = () => {
           </Link>
         </div>
 
-        {/* Debug info - remove in production */}
-        <div className="mt-8 p-4 bg-gray-100 rounded-lg text-sm text-gray-600">
-          <p>
-            <strong>Debug Info:</strong>
-          </p>
-          <p>Loading: {loading ? "Yes" : "No"}</p>
-          <p>Error: {error || "None"}</p>
-          <p>Data exists: {data ? "Yes" : "No"}</p>
-          <p>News count: {news.length}</p>
-          <p>Force show: {forceShow ? "Yes" : "No"}</p>
-        </div>
       </div>
     </section>
   )
