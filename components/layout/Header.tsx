@@ -144,9 +144,14 @@ const Header = () => {
                 )}
               </div>
             ))}
-            <Link href="/kontak" className="btn-primary">
-              Hubungi Kami
-            </Link>
+            <a
+              href="https://satupemuda.smplabschooljakarta.sch.id/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              SATUPEMUDA
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -205,9 +210,14 @@ const Header = () => {
                 </div>
               ))}
               <div className="px-4 pt-2">
-                <Link href="/kontak" className="btn-primary block text-center">
-                  Hubungi Kami
-                </Link>
+                <a
+                  href="https://satupemuda.smplabschooljakarta.sch.id/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary block text-center"
+                >
+                  SATUPEMUDA
+                </a>
               </div>
             </div>
           </div>

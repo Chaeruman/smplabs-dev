@@ -273,12 +273,12 @@ const GalleryGrid = () => {
                   <p className="text-sm sm:text-base text-white/90 mb-3">{selectedImage.description}</p>
                   <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-white/80 space-y-2 sm:space-y-0 sm:space-x-6">
                     <div className="flex items-center">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      {selectedImage.date}
+                      <Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
+                      <span>{selectedImage.date}</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="h-4 w-4 mr-2" />
-                      {selectedImage.location}
+                      <MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
+                      <span>{selectedImage.location}</span>
                     </div>
                   </div>
                 </div>
