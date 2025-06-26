@@ -64,6 +64,22 @@
   .card-soft-indigo {
     @apply bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 @keyframes fadeIn {
@@ -93,4 +109,11 @@
 
 .aos-animate[data-aos^="fade"][data-aos^="fade"] {
   opacity: 1;
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  .section-padding {
+    @apply py-12 px-4;
+  }
 }

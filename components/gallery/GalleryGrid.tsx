@@ -152,14 +152,34 @@ const GalleryGrid = () => {
       <div className="container-custom">
         {/* Category Filter */}
         <div
-          className={`mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`mb-8 lg:mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <div className="flex flex-wrap justify-center gap-3">
+          {/* Mobile Category Filter - Horizontal Scroll */}
+          <div className="block sm:hidden">
+            <div className="flex overflow-x-auto pb-4 space-x-3 scrollbar-hide">
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`flex-shrink-0 px-4 py-2 rounded-full font-semibold text-sm transition-all duration-300 whitespace-nowrap ${
+                    selectedCategory === category.id
+                      ? `${category.color} text-white shadow-lg scale-105`
+                      : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  }`}
+                >
+                  {category.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Category Filter - Wrapped */}
+          <div className="hidden sm:flex flex-wrap justify-center gap-2 lg:gap-3">
             {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`px-4 lg:px-6 py-2 lg:py-3 rounded-full font-semibold text-sm lg:text-base transition-all duration-300 ${
                   selectedCategory === category.id
                     ? `${category.color} text-white shadow-lg scale-105`
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
@@ -172,7 +192,7 @@ const GalleryGrid = () => {
         </div>
 
         {/* Gallery Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
@@ -182,8 +202,8 @@ const GalleryGrid = () => {
               style={{ transitionDelay: `${index * 100}ms` }}
               onClick={() => openLightbox(item, index)}
             >
-              <div className="relative overflow-hidden rounded-2xl shadow-lg hover-glow">
-                <div className="relative h-64">
+              <div className="relative overflow-hidden rounded-xl lg:rounded-2xl shadow-lg hover-glow">
+                <div className="relative h-48 sm:h-56 lg:h-64">
                   <Image
                     src={item.image || "/placeholder.svg"}
                     alt={item.title}
@@ -192,17 +212,17 @@ const GalleryGrid = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="text-lg font-bold mb-2">{item.title}</h3>
-                  <p className="text-sm text-white/90 mb-3 line-clamp-2">{item.description}</p>
-                  <div className="flex items-center text-xs text-white/80 space-x-4">
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 lg:p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-sm sm:text-base lg:text-lg font-bold mb-1 sm:mb-2 line-clamp-2">{item.title}</h3>
+                  <p className="text-xs sm:text-sm text-white/90 mb-2 sm:mb-3 line-clamp-2">{item.description}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center text-xs text-white/80 space-y-1 sm:space-y-0 sm:space-x-4">
                     <div className="flex items-center">
-                      <Calendar className="h-3 w-3 mr-1" />
-                      {item.date}
+                      <Calendar className="h-3 w-3 mr-1 flex-shrink-0" />
+                      <span className="truncate">{item.date}</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="h-3 w-3 mr-1" />
-                      {item.location}
+                      <MapPin className="h-3 w-3 mr-1 flex-shrink-0" />
+                      <span className="truncate">{item.location}</span>
                     </div>
                   </div>
                 </div>
@@ -213,28 +233,28 @@ const GalleryGrid = () => {
 
         {/* Lightbox Modal */}
         {selectedImage && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm">
-            <div className="relative max-w-4xl max-h-[90vh] mx-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+            <div className="relative max-w-4xl max-h-[90vh] w-full">
               {/* Close Button */}
               <button
                 onClick={closeLightbox}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
               >
-                <X className="h-8 w-8" />
+                <X className="h-6 w-6 sm:h-8 sm:w-8" />
               </button>
 
               {/* Navigation Buttons */}
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-10"
               >
-                <ChevronLeft className="h-8 w-8" />
+                <ChevronLeft className="h-6 w-6 sm:h-8 sm:w-8" />
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors"
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-10"
               >
-                <ChevronRight className="h-8 w-8" />
+                <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
               </button>
 
               {/* Image */}
@@ -244,14 +264,14 @@ const GalleryGrid = () => {
                   alt={selectedImage.title}
                   width={800}
                   height={600}
-                  className="rounded-lg"
+                  className="rounded-lg w-full h-auto max-h-[70vh] object-contain"
                 />
 
                 {/* Image Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-lg">
-                  <h3 className="text-xl font-bold text-white mb-2">{selectedImage.title}</h3>
-                  <p className="text-white/90 mb-3">{selectedImage.description}</p>
-                  <div className="flex items-center text-sm text-white/80 space-x-6">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 sm:p-6 rounded-b-lg">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{selectedImage.title}</h3>
+                  <p className="text-sm sm:text-base text-white/90 mb-3">{selectedImage.description}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center text-xs sm:text-sm text-white/80 space-y-2 sm:space-y-0 sm:space-x-6">
                     <div className="flex items-center">
                       <Calendar className="h-4 w-4 mr-2" />
                       {selectedImage.date}
