@@ -4,9 +4,11 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight, Users, Award, BookOpen } from "lucide-react"
+import { useHomepageData } from "@/hooks/useHomepageData"
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const { data, loading } = useHomepageData()
 
   useEffect(() => {
     setIsVisible(true)
@@ -48,10 +50,12 @@ const HeroSection = () => {
               <ChevronRight className="h-5 w-5 group-hover:translate-x-1 transition-transform flex-shrink-0" />
             </Link>
             <Link
-              href="/kontak"
+              href="https://satupemuda.smplabschooljakarta.sch.id/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-white/20 backdrop-blur-sm text-white font-semibold rounded-full border-2 border-white/30 hover:bg-white/30 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap w-full sm:w-auto"
             >
-              Hubungi Kami
+              SATUPEMUDA
             </Link>
           </div>
         </div>
@@ -64,21 +68,39 @@ const HeroSection = () => {
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full mb-3 sm:mb-4 border border-white/30">
               <Users className="h-7 w-7 sm:h-8 sm:w-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold">500+</h3>
+            <h3 className="text-xl sm:text-2xl font-bold">
+              {loading ? (
+                <div className="h-6 bg-white/20 rounded w-12 mx-auto animate-pulse"></div>
+              ) : (
+                `${data?.siswa || 444}+`
+              )}
+            </h3>
             <p className="text-sm sm:text-base text-blue-200">Siswa Aktif</p>
           </div>
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full mb-3 sm:mb-4 border border-white/30">
               <Award className="h-7 w-7 sm:h-8 sm:w-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold">50+</h3>
+            <h3 className="text-xl sm:text-2xl font-bold">
+              {loading ? (
+                <div className="h-6 bg-white/20 rounded w-12 mx-auto animate-pulse"></div>
+              ) : (
+                `${data?.prestasi || 600}+`
+              )}
+            </h3>
             <p className="text-sm sm:text-base text-blue-200">Prestasi</p>
           </div>
           <div className="text-center">
             <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full mb-3 sm:mb-4 border border-white/30">
               <BookOpen className="h-7 w-7 sm:h-8 sm:w-8" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold">25+</h3>
+            <h3 className="text-xl sm:text-2xl font-bold">
+              {loading ? (
+                <div className="h-6 bg-white/20 rounded w-12 mx-auto animate-pulse"></div>
+              ) : (
+                `${data?.program || "30"}+`
+              )}
+            </h3>
             <p className="text-sm sm:text-base text-blue-200">Program</p>
           </div>
         </div>
