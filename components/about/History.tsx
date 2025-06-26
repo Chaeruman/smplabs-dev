@@ -26,21 +26,21 @@ const History = () => {
 
   const timeline = [
     {
-      year: "2009",
+      year: "1968",
       title: "Pendirian Sekolah",
-      description: "SMP Labschool Jakarta didirikan dengan visi menciptakan pendidikan berkualitas.",
+      description: "Bermula dari sekolah Teladan yang didirikan pada tanggal 12 Februari 1968 yang dimaksudkan sebagai sekolah laboratorium IKIP Jakarta. Sekolah ini digunakan untuk praktik mengajar, penelitian pendidikan dan inovasi pendidikan.",
       icon: Building,
       color: "bg-gradient-to-br from-blue-400 to-blue-500",
     },
     {
-      year: "2012",
+      year: "2014",
       title: "Akreditasi A",
       description: "Meraih akreditasi A dari Badan Akreditasi Nasional Sekolah/Madrasah.",
       icon: Award,
       color: "bg-gradient-to-br from-green-400 to-green-500",
     },
     {
-      year: "2015",
+      year: "2016",
       title: "Ekspansi Program",
       description: "Meluncurkan berbagai program unggulan dan ekstrakurikuler.",
       icon: Users,
