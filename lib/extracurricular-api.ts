@@ -61,16 +61,16 @@ const fallbackData: ExtracurricularCategory[] = [
     bgColor: "from-green-50 to-teal-50",
     activities: [
       {
-        name: "Olimpiade Matematika",
-        description:
-          "Persiapan kompetisi matematika tingkat nasional\r\nPembina: Dr. Budi Santoso, M.Pd.\r\nTempat: Lab Matematika\r\nWaktu: Selasa & Kamis, 15.30 - 17.00 WIB",
-        participants: "15 siswa aktif",
-      },
-      {
         name: "English Club",
         description:
           "Klub bahasa Inggris untuk meningkatkan kemampuan berbahasa\r\nPembina: Sarah Johnson, M.A.\r\nTempat: Lab Bahasa\r\nWaktu: Rabu & Jumat, 15.30 - 17.00 WIB",
         participants: "28 siswa aktif",
+      },
+      {
+        name: "Olimpiade Matematika",
+        description:
+          "Persiapan kompetisi matematika tingkat nasional\r\nPembina: Dr. Budi Santoso, M.Pd.\r\nTempat: Lab Matematika\r\nWaktu: Selasa & Kamis, 15.30 - 17.00 WIB",
+        participants: "15 siswa aktif",
       },
       {
         name: "Robotika",
@@ -109,7 +109,15 @@ const fallbackData: ExtracurricularCategory[] = [
 ]
 
 export async function fetchExtracurricularData(): Promise<ExtracurricularCategory[]> {
+  // For static generation, we'll use fallback data directly
+  // In production, you might want to fetch from a CMS or database
+  if (typeof window === "undefined") {
+    // Server-side: return fallback data for static generation
+    return fallbackData
+  }
+
   try {
+    // Client-side: try to fetch from API
     const response = await fetch("/api/extracurricular")
 
     if (!response.ok) {

@@ -1,57 +1,37 @@
 "use client"
+
 import { useState } from "react"
-import { Music, Trophy, BookOpen, Camera } from "lucide-react"
 import { useExtracurricularData } from "@/hooks/useExtracurricularData"
+import { Trophy, Music, BookOpen, Camera, Users, Clock, MapPin } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
-const ExtracurricularCategories = () => {
+const iconMap = {
+  Trophy,
+  Music,
+  BookOpen,
+  Camera,
+}
+
+export default function ExtracurricularCategories() {
   const { data: categories, loading, error } = useExtracurricularData()
-  const [activeCategory, setActiveCategory] = useState(0)
-
-  // Icon mapping
-  const iconMap = {
-    Music: Music,
-    Trophy: Trophy,
-    BookOpen: BookOpen,
-    Camera: Camera,
-  }
-
-  // Generate slug from activity name
-  const generateSlug = (name: string) => {
-    return name
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]/g, "")
-  }
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   if (loading) {
     return (
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center mb-12 sm:mb-16">
-            <div className="h-6 sm:h-8 bg-gray-200 rounded w-48 sm:w-64 mx-auto mb-3 sm:mb-4 animate-pulse"></div>
-            <div className="h-4 bg-gray-200 rounded w-64 sm:w-96 mx-auto animate-pulse"></div>
+          <div className="text-center mb-12">
+            <div className="h-8 bg-gray-200 rounded w-64 mx-auto mb-4 animate-pulse"></div>
+            <div className="h-4 bg-gray-200 rounded w-96 mx-auto animate-pulse"></div>
           </div>
-
-          {/* Mobile Category Tabs Loading */}
-          <div className="flex overflow-x-auto gap-2 sm:gap-4 mb-8 sm:mb-12 pb-2 scrollbar-hide sm:justify-center">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="flex-shrink-0 h-10 sm:h-12 bg-gray-200 rounded-full w-24 sm:w-32 animate-pulse"
-              ></div>
-            ))}
-          </div>
-
-          {/* Loading Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-xl p-4 sm:p-6 shadow-lg">
-                <div className="h-32 sm:h-48 bg-gray-200 rounded-lg mb-4 animate-pulse"></div>
-                <div className="h-5 sm:h-6 bg-gray-200 rounded mb-2 animate-pulse"></div>
-                <div className="h-4 bg-gray-200 rounded mb-3 animate-pulse"></div>
-                <div className="h-4 bg-gray-200 rounded w-20 animate-pulse"></div>
+              <div key={i} className="bg-white rounded-2xl p-6 shadow-lg animate-pulse">
+                <div className="h-48 bg-gray-200 rounded-xl mb-4"></div>
+                <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
+                <div className="h-10 bg-gray-200 rounded"></div>
               </div>
             ))}
           </div>
@@ -60,159 +40,195 @@ const ExtracurricularCategories = () => {
     )
   }
 
-  if (!categories || categories.length === 0) {
+  if (error) {
     return (
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">Kategori Ekstrakurikuler</h2>
-            <p className="text-lg sm:text-xl text-gray-600">Data ekstrakurikuler tidak tersedia saat ini.</p>
-            {error && (
-              <div className="mt-4 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-lg">
-                <p>Error: {error}</p>
-                <p className="text-sm mt-2">Menampilkan data fallback...</p>
-              </div>
-            )}
+      <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <p className="text-red-600">Gagal memuat data ekstrakurikuler. Silakan coba lagi nanti.</p>
           </div>
         </div>
       </section>
     )
   }
+
+  const filteredCategories = selectedCategory ? categories.filter((cat) => cat.title === selectedCategory) : categories
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Header */}
+        {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6">
             Kategori Ekstrakurikuler
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Pilih kategori yang sesuai dengan minat dan bakat Anda
           </p>
-          <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-4 sm:mt-6 rounded-full"></div>
         </div>
 
-        {error && (
-          <div className="mb-6 sm:mb-8 p-4 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded-lg text-center text-sm sm:text-base">
-            <p>Menggunakan data fallback karena: {error}</p>
-          </div>
-        )}
-
-        {/* Category Tabs - Mobile Optimized */}
-        <div className="relative mb-8 sm:mb-12">
-          {/* Mobile: Horizontal Scroll */}
-          <div className="flex overflow-x-auto gap-2 sm:gap-4 pb-2 scrollbar-hide sm:justify-center">
-            {categories.map((category, index) => {
-              const IconComponent = iconMap[category.icon as keyof typeof iconMap] || BookOpen
-              return (
-                <button
-                  key={index}
-                  onClick={() => setActiveCategory(index)}
-                  className={`flex-shrink-0 flex items-center space-x-2 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
-                    activeCategory === index
-                      ? `bg-gradient-to-r ${category.color} text-white shadow-lg transform scale-105`
-                      : "bg-white text-gray-600 hover:bg-gray-50 shadow-md"
-                  }`}
-                >
-                  <IconComponent className="h-4 w-4 sm:h-5 sm:w-5" />
-                  <span className="whitespace-nowrap">{category.title}</span>
-                </button>
-              )
-            })}
+        {/* Category Filter */}
+        <div className="mb-8 sm:mb-12">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                selectedCategory === null
+                  ? "bg-blue-600 text-white shadow-lg"
+                  : "bg-white text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              Semua Kategori
+            </button>
+            {categories.map((category) => (
+              <button
+                key={category.title}
+                onClick={() => setSelectedCategory(category.title)}
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium transition-all duration-300 ${
+                  selectedCategory === category.title
+                    ? "bg-blue-600 text-white shadow-lg"
+                    : "bg-white text-gray-600 hover:bg-gray-100"
+                }`}
+              >
+                {category.title}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Active Category Content */}
-        <div
-          className={`bg-gradient-to-br ${categories[activeCategory].bgColor} rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8`}
-        >
-          {/* Category Title - Mobile */}
-          <div className="text-center mb-6 sm:hidden">
-            <h3 className="text-xl font-bold text-gray-800">{categories[activeCategory].title}</h3>
-          </div>
+        {/* Categories Grid */}
+        <div className="space-y-12 sm:space-y-16">
+          {filteredCategories.map((category) => {
+            const IconComponent = iconMap[category.icon as keyof typeof iconMap] || BookOpen
 
-          {/* Activities Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {categories[activeCategory].activities.map((activity, index) => {
-              const IconComponent = iconMap[categories[activeCategory].icon as keyof typeof iconMap] || BookOpen
-              const slug = generateSlug(activity.name)
-              const defaultImage = "/placeholder.svg?height=200&width=300"
-
-              return (
-                <div
-                  key={index}
-                  className="bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105"
-                >
-                  {/* Image */}
-                  <div className="relative h-32 sm:h-40 lg:h-48 overflow-hidden">
-                    <Image
-                      src={defaultImage || "/placeholder.svg"}
-                      alt={activity.name}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    <div
-                      className={`absolute top-2 sm:top-4 left-2 sm:left-4 w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r ${categories[activeCategory].color} rounded-lg flex items-center justify-center`}
-                    >
-                      <IconComponent className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-4 sm:p-5 lg:p-6">
-                    <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2 line-clamp-2 leading-tight">
-                      {activity.name}
-                    </h3>
-                    <div className="text-gray-600 text-sm sm:text-sm mb-3 sm:mb-4 leading-relaxed line-clamp-3">
-                      {activity.description.split("\r\n")[0].trim()}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-gray-500 truncate max-w-[60%]">{activity.participants}</span>
-                      <Link
-                        href={`/ekstrakurikuler/${slug}`}
-                        className="text-xs sm:text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors whitespace-nowrap"
-                      >
-                        Lihat Selengkapnya →
-                      </Link>
-                    </div>
+            return (
+              <div key={category.title} className="space-y-6 sm:space-y-8">
+                {/* Category Header */}
+                <div className="text-center">
+                  <div
+                    className={`inline-flex items-center bg-gradient-to-r ${category.color} text-white px-6 py-3 rounded-full mb-4`}
+                  >
+                    <IconComponent className="h-6 w-6 mr-3" />
+                    <h3 className="text-xl sm:text-2xl font-bold">{category.title}</h3>
                   </div>
                 </div>
-              )
-            })}
-          </div>
+
+                {/* Activities Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                  {category.activities.map((activity) => {
+                    const slug = activity.name
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")
+                      .replace(/[^\w-]/g, "")
+
+                    const parseDescription = (desc: string) => {
+                      const lines = desc.split("\r\n")
+                      return {
+                        main: lines[0] || "",
+                        instructor:
+                          lines
+                            .find((line) => line.includes("Pembina"))
+                            ?.replace("Pembina:", "")
+                            .trim() || "",
+                        location:
+                          lines
+                            .find((line) => line.includes("Tempat"))
+                            ?.replace("Tempat:", "")
+                            .trim() || "",
+                        schedule:
+                          lines
+                            .find((line) => line.includes("Waktu"))
+                            ?.replace("Waktu:", "")
+                            .trim() || "",
+                      }
+                    }
+
+                    const details = parseDescription(activity.description)
+
+                    return (
+                      <div
+                        key={activity.name}
+                        className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden group"
+                      >
+                        {/* Image */}
+                        <div className="relative h-48 sm:h-56 overflow-hidden">
+                          <Image
+                            src="/placeholder.svg?height=300&width=400"
+                            alt={activity.name}
+                            fill
+                            className="object-cover group-hover:scale-110 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                          <div className="absolute bottom-4 left-4 right-4">
+                            <h4 className="text-white font-bold text-lg sm:text-xl mb-1">{activity.name}</h4>
+                            <div className="flex items-center text-white/80 text-sm">
+                              <Users className="h-4 w-4 mr-1" />
+                              <span>{activity.participants}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6">
+                          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">{details.main}</p>
+
+                          {/* Details */}
+                          <div className="space-y-2 mb-6">
+                            {details.instructor && (
+                              <div className="flex items-center text-sm text-gray-500">
+                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                                <span className="font-medium">Pembina:</span>
+                                <span className="ml-1">{details.instructor}</span>
+                              </div>
+                            )}
+                            {details.location && (
+                              <div className="flex items-center text-sm text-gray-500">
+                                <MapPin className="h-3 w-3 mr-2 text-green-500" />
+                                <span>{details.location}</span>
+                              </div>
+                            )}
+                            {details.schedule && (
+                              <div className="flex items-center text-sm text-gray-500">
+                                <Clock className="h-3 w-3 mr-2 text-purple-500" />
+                                <span>{details.schedule}</span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* CTA Button */}
+                          <Link
+                            href={`/ekstrakurikuler/${slug}`}
+                            className={`block w-full bg-gradient-to-r ${category.color} text-white text-center py-3 px-4 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm sm:text-base`}
+                          >
+                            Lihat Selengkapnya
+                          </Link>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )
+          })}
         </div>
 
-        {/* Navigation Hint for Mobile */}
-        <div className="text-center mt-6 sm:hidden">
-          <p className="text-sm text-gray-500">Geser kategori di atas untuk melihat lebih banyak</p>
-        </div>
-
-        {/* Debug Info - Development Only */}
-        {process.env.NODE_ENV === "development" && (
-          <div className="mt-8 p-4 bg-gray-100 rounded-lg text-sm">
-            <h4 className="font-bold mb-2">Debug Info:</h4>
-            <p>Loading: {loading.toString()}</p>
-            <p>Error: {error || "None"}</p>
-            <p>Categories Count: {categories?.length || 0}</p>
-            <p>Active Category: {activeCategory}</p>
-            <div className="mt-2">
-              <p className="font-medium">Available slugs:</p>
-              {categories.map((category, catIndex) =>
-                category.activities.map((activity, actIndex) => (
-                  <p key={`${catIndex}-${actIndex}`} className="text-xs">
-                    - {generateSlug(activity.name)} ({activity.name})
-                  </p>
-                )),
-              )}
-            </div>
+        {/* CTA Section */}
+        <div className="text-center mt-12 sm:mt-16">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 sm:p-12 text-white">
+            <h3 className="text-2xl sm:text-3xl font-bold mb-4">Siap Bergabung?</h3>
+            <p className="text-lg sm:text-xl text-white/90 mb-6 max-w-2xl mx-auto">
+              Daftarkan diri Anda sekarang dan kembangkan potensi melalui kegiatan ekstrakurikuler yang menarik
+            </p>
+            <Link
+              href="/kontak"
+              className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors text-lg"
+            >
+              Hubungi Kami
+            </Link>
           </div>
-        )}
+        </div>
       </div>
     </section>
   )
 }
-
-export default ExtracurricularCategories

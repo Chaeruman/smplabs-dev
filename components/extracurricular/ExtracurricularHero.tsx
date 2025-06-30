@@ -1,73 +1,63 @@
-"use client"
+import { Trophy, Users, Calendar, Award } from "lucide-react"
 
-import { useState, useEffect } from "react"
-import { Trophy, Users, Calendar, Star } from "lucide-react"
-
-const ExtracurricularHero = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
+export default function ExtracurricularHero() {
   return (
-    <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1200')] bg-cover bg-center opacity-10"></div>
+    <section className="relative min-h-[60vh] sm:min-h-[70vh] bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 text-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-32 right-32 w-40 h-40 bg-white rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-2xl animate-pulse delay-500"></div>
       </div>
 
-      {/* Floating Elements - Hidden on mobile for better performance */}
-      <div className="absolute inset-0 overflow-hidden hidden sm:block">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-bounce"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-yellow-300/20 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-32 left-20 w-12 h-12 bg-pink-300/20 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-blue-300/20 rounded-full animate-pulse"></div>
-      </div>
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl h-full flex items-center">
+        <div className="w-full py-16 sm:py-20 lg:py-24">
+          {/* Main Content */}
+          <div className="text-center mb-12 sm:mb-16">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+              Ekstrakurikuler
+            </h1>
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed px-4">
+              Kembangkan bakat dan minat Anda melalui berbagai kegiatan ekstrakurikuler yang menarik dan bermanfaat
+            </p>
+          </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        <div
-          className={`transform transition-all duration-1000 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
-        >
-          {/* Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight">
-            Ekstrakurikuler
-          </h1>
-
-          {/* Description */}
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 text-blue-100 max-w-4xl mx-auto leading-relaxed px-2">
-            Kembangkan bakat dan minat Anda melalui berbagai kegiatan ekstrakurikuler yang menarik dan bermanfaat
-          </p>
-
-          {/* Stats Grid - Mobile Optimized */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mt-8 sm:mt-12 max-w-5xl mx-auto">
-            {[
-              { icon: Trophy, label: "Prestasi", value: "50+" },
-              { icon: Users, label: "Siswa Aktif", value: "800+" },
-              { icon: Calendar, label: "Kegiatan", value: "25+" },
-              { icon: Star, label: "Kategori", value: "8" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className={`bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 lg:p-6 transform transition-all duration-700 hover:scale-105 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-                }`}
-                style={{ transitionDelay: `${index * 150}ms` }}
-              >
-                <stat.icon className="h-6 w-6 sm:h-7 sm:w-7 lg:h-8 lg:w-8 mx-auto mb-2 sm:mb-3 text-yellow-300" />
-                <div className="text-lg sm:text-xl lg:text-2xl font-bold mb-1">{stat.value}</div>
-                <div className="text-xs sm:text-sm text-blue-100">{stat.label}</div>
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center hover:bg-white/20 transition-all duration-300 hover:scale-105">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Trophy className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-800" />
               </div>
-            ))}
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">50+</div>
+              <div className="text-white/80 text-sm sm:text-base">Prestasi</div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center hover:bg-white/20 transition-all duration-300 hover:scale-105">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Users className="h-6 w-6 sm:h-8 sm:w-8 text-green-800" />
+              </div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">800+</div>
+              <div className="text-white/80 text-sm sm:text-base">Siswa Aktif</div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center hover:bg-white/20 transition-all duration-300 hover:scale-105">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-blue-800" />
+              </div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">25+</div>
+              <div className="text-white/80 text-sm sm:text-base">Kegiatan</div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 text-center hover:bg-white/20 transition-all duration-300 hover:scale-105">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                <Award className="h-6 w-6 sm:h-8 sm:w-8 text-purple-800" />
+              </div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">8</div>
+              <div className="text-white/80 text-sm sm:text-base">Kategori</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
   )
 }
-
-export default ExtracurricularHero

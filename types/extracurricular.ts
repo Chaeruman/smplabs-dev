@@ -2,9 +2,6 @@ export interface ExtracurricularActivity {
   name: string
   description: string
   participants: string
-  instructor?: string
-  location?: string
-  schedule?: string
 }
 
 export interface ExtracurricularCategory {
@@ -15,6 +12,4 @@ export interface ExtracurricularCategory {
   activities: ExtracurricularActivity[]
 }
 
-export interface ExtracurricularData {
-  categories: ExtracurricularCategory[]
-}
+export type ExtracurricularData = ExtracurricularCategory[]
