@@ -1,119 +1,156 @@
 "use client"
 
-import { Trophy, Medal, Award, Star } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Trophy, Medal, Award, Star, Calendar, MapPin } from "lucide-react"
 
 const ExtracurricularAchievements = () => {
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
+
   const achievements = [
     {
-      icon: Trophy,
-      title: "Juara 1 Olimpiade Matematika",
-      level: "Tingkat Provinsi DKI Jakarta",
+      title: "Juara 1 Lomba Robotika Nasional",
+      category: "Teknologi",
       year: "2024",
+      level: "Nasional",
+      location: "Jakarta",
+      description: "Tim robotika SMP Labschool berhasil meraih juara pertama dalam kompetisi robotika tingkat nasional",
+      icon: Trophy,
       color: "from-yellow-400 to-orange-500",
       bgColor: "from-yellow-50 to-orange-50",
     },
     {
-      icon: Medal,
-      title: "Juara 2 Lomba Paduan Suara",
-      level: "Tingkat Nasional",
+      title: "Medali Emas Olimpiade Matematika",
+      category: "Akademik",
       year: "2024",
-      color: "from-gray-400 to-gray-600",
-      bgColor: "from-gray-50 to-slate-50",
+      level: "Provinsi",
+      location: "DKI Jakarta",
+      description: "Siswa berprestasi meraih medali emas dalam Olimpiade Matematika tingkat provinsi",
+      icon: Medal,
+      color: "from-blue-400 to-purple-500",
+      bgColor: "from-blue-50 to-purple-50",
     },
     {
+      title: "Juara 2 Festival Seni Budaya",
+      category: "Seni",
+      year: "2024",
+      level: "Regional",
+      location: "Jabodetabek",
+      description: "Penampilan tari tradisional meraih juara kedua di festival seni budaya regional",
       icon: Award,
-      title: "Juara 3 Kompetisi Robotika",
-      level: "Tingkat Regional Jabodetabek",
-      year: "2023",
-      color: "from-amber-600 to-yellow-700",
-      bgColor: "from-amber-50 to-yellow-50",
+      color: "from-pink-400 to-red-500",
+      bgColor: "from-pink-50 to-red-50",
     },
     {
-      icon: Star,
-      title: "Best Performance Drama",
-      level: "Festival Seni Pelajar Jakarta",
-      year: "2023",
-      color: "from-purple-400 to-pink-500",
-      bgColor: "from-purple-50 to-pink-50",
-    },
-    {
-      icon: Trophy,
-      title: "Juara 1 Basket Putri",
-      level: "Liga Pelajar Jakarta Selatan",
+      title: "Penghargaan Sekolah Berprestasi",
+      category: "Institusi",
       year: "2024",
-      color: "from-blue-400 to-cyan-500",
-      bgColor: "from-blue-50 to-cyan-50",
-    },
-    {
-      icon: Medal,
-      title: "Juara 2 Lomba Fotografi",
-      level: "Kompetisi Nasional",
-      year: "2023",
-      color: "from-green-400 to-emerald-500",
-      bgColor: "from-green-50 to-emerald-50",
+      level: "Nasional",
+      location: "Indonesia",
+      description: "SMP Labschool mendapat pengakuan sebagai sekolah dengan prestasi ekstrakurikuler terbaik",
+      icon: Star,
+      color: "from-green-400 to-teal-500",
+      bgColor: "from-green-50 to-teal-50",
     },
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-      <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Prestasi Terbaru</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Berbagai prestasi membanggakan yang telah diraih siswa-siswi SMP Labschool Jakarta
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-6 rounded-full"></div>
+    <section className="py-12 sm:py-16 lg:py-20 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-12 sm:mb-16">
+          <div
+            className={`transform transition-all duration-1000 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 sm:mb-4">
+              Prestasi & Penghargaan
+            </h2>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-2">
+              Berbagai prestasi membanggakan yang telah diraih siswa-siswi SMP Labschool
+            </p>
+            <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-400 mx-auto mt-4 sm:mt-6 rounded-full"></div>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {achievements.map((achievement, index) => (
-            <div
-              key={index}
-              className={`bg-gradient-to-br ${achievement.bgColor} rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:transform hover:scale-105 border border-white/50`}
-            >
+        {/* Achievements Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {achievements.map((achievement, index) => {
+            const IconComponent = achievement.icon
+            return (
               <div
-                className={`w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-full flex items-center justify-center mb-6 shadow-lg`}
+                key={index}
+                className={`transform transition-all duration-700 hover:scale-105 ${
+                  isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                }`}
+                style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <achievement.icon className="h-8 w-8 text-white" />
-              </div>
-
-              <h3 className="text-xl font-bold text-gray-800 mb-2">{achievement.title}</h3>
-              <p className="text-gray-600 mb-3">{achievement.level}</p>
-
-              <div className="flex items-center justify-between">
-                <span
-                  className={`bg-gradient-to-r ${achievement.color} text-white px-3 py-1 rounded-full text-sm font-medium`}
+                <div
+                  className={`bg-gradient-to-br ${achievement.bgColor} rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full`}
                 >
-                  {achievement.year}
-                </span>
-                <div className="flex items-center space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
-                  ))}
+                  {/* Icon and Category */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className={`w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-r ${achievement.color} rounded-lg flex items-center justify-center`}
+                    >
+                      <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                    </div>
+                    <span className="text-xs sm:text-sm font-medium text-gray-600 bg-white/70 px-2 sm:px-3 py-1 rounded-full">
+                      {achievement.category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2 sm:mb-3 line-clamp-2 leading-tight">
+                    {achievement.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-sm text-gray-600 mb-3 sm:mb-4 line-clamp-3 leading-relaxed">
+                    {achievement.description}
+                  </p>
+
+                  {/* Details */}
+                  <div className="space-y-2">
+                    <div className="flex items-center text-xs sm:text-sm text-gray-500">
+                      <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                      <span>
+                        {achievement.year} • {achievement.level}
+                      </span>
+                    </div>
+                    <div className="flex items-center text-xs sm:text-sm text-gray-500">
+                      <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                      <span className="truncate">{achievement.location}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        {/* Statistics */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { label: "Total Prestasi", value: "50+", color: "from-blue-500 to-purple-500" },
-            { label: "Juara 1", value: "15", color: "from-yellow-500 to-orange-500" },
-            { label: "Tingkat Nasional", value: "8", color: "from-green-500 to-emerald-500" },
-            { label: "Siswa Berprestasi", value: "120+", color: "from-pink-500 to-rose-500" },
-          ].map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className={`text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
-                {stat.value}
-              </div>
-              <div className="text-gray-600 text-sm">{stat.label}</div>
-            </div>
-          ))}
+        {/* Call to Action */}
+        <div className="text-center mt-12 sm:mt-16">
+          <div
+            className={`transform transition-all duration-1000 ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+            }`}
+            style={{ transitionDelay: "800ms" }}
+          >
+            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-3 sm:mb-4">
+              Bergabunglah dan Raih Prestasi Bersama Kami!
+            </h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
+              Jadilah bagian dari komunitas berprestasi dan kembangkan potensi terbaik Anda
+            </p>
+            <button className="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:shadow-lg transform hover:scale-105 text-sm sm:text-base">
+              Daftar Sekarang
+            </button>
+          </div>
         </div>
       </div>
     </section>
