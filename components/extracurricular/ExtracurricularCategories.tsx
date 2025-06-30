@@ -122,13 +122,15 @@ export default function ExtracurricularCategories() {
                       .replace(/[^\w-]/g, "")
 
                     const parseDescription = (desc: string) => {
-                      const lines = desc.split("\r\n")
+                      const lines = desc.split("\r\n");
                       return {
                         main: lines[0] || "",
                         instructor:
                           lines
-                            .find((line) => line.includes("Pembina"))
-                            ?.replace("Pembina:", "")
+                            .find((line) =>
+                              /(?:Guru\s*)?Pembina/i.test(line)
+                            )
+                            ?.replace(/(?:Guru\s*)?Pembina\s*:/i, "")
                             .trim() || "",
                         location:
                           lines
@@ -140,8 +142,9 @@ export default function ExtracurricularCategories() {
                             .find((line) => line.includes("Waktu"))
                             ?.replace("Waktu:", "")
                             .trim() || "",
-                      }
-                    }
+                      };
+                    };
+
 
                     const details = parseDescription(activity.description)
 
@@ -171,7 +174,7 @@ export default function ExtracurricularCategories() {
 
                         {/* Content */}
                         <div className="p-6">
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">{details.main}</p>
+                          
 
                           {/* Details */}
                           <div className="space-y-2 mb-6">
