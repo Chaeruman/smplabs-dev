@@ -11,5 +11,3 @@ export interface ExtracurricularCategory {
   bgColor: string
   activities: ExtracurricularActivity[]
 }
-
-export type ExtracurricularData = ExtracurricularCategory[]

@@ -72,7 +72,7 @@ const HeroSection = () => {
               {loading ? (
                 <div className="h-6 bg-white/20 rounded w-12 mx-auto animate-pulse"></div>
               ) : (
-                `${data?.siswa || 444}+`
+                `${data?.siswa || 900}+`
               )}
             </h3>
             <p className="text-sm sm:text-base text-blue-200">Siswa Aktif</p>

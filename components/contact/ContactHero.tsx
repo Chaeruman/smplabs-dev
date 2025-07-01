@@ -39,7 +39,7 @@ const ContactHero = () => {
             >
               <Mail className="h-8 w-8 mx-auto mb-2 text-blue-300 group-hover:text-blue-200 transition-colors" />
               <p className="text-sm font-medium">Email</p>
-              <p className="text-xs text-blue-100">admin@smplabschool...</p>
+              <p className="text-xs text-blue-100">tusmplabsjkt@labschool.xyz</p>
             </a>
 
             <a
@@ -56,7 +56,7 @@ const ContactHero = () => {
             <div className="group bg-white/10 backdrop-blur-md rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">
               <MapPin className="h-8 w-8 mx-auto mb-2 text-red-300 group-hover:text-red-200 transition-colors" />
               <p className="text-sm font-medium">Lokasi</p>
-              <p className="text-xs text-blue-100">Jakarta Selatan</p>
+              <p className="text-xs text-blue-100">Jakarta Timur</p>
             </div>
           </div>
         </div>

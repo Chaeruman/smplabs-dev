@@ -137,7 +137,7 @@ export default function Footer() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-white/80 flex-shrink-0" />
-                  <p className="text-white/90 text-sm">admin@smplabschooljakarta.sch.id</p>
+                  <p className="text-white/90 text-sm">tusmplabsjkt@labschool.xyz</p>
                 </div>
                 <div className="flex items-start space-x-3">
                   <Clock className="h-5 w-5 text-white/80 mt-0.5 flex-shrink-0" />
@@ -168,7 +168,7 @@ export default function Footer() {
                 <div className="relative w-8 h-8">
                   <Image src="/logo-smp-labschool.png" alt="SMP Labschool Jakarta" fill className="object-contain" />
                 </div>
-                <p className="text-white/80 text-sm">© 2024 SMP Labschool Jakarta. All rights reserved.</p>
+                <p className="text-white/80 text-sm">© 2025 SMP Labschool Jakarta. All rights reserved.</p>
               </div>
               <div className="flex space-x-6 text-xs text-white/60">
                 <Link href="/privacy" className="hover:text-white/80 transition-colors">

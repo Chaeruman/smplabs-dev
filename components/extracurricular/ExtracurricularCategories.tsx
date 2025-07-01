@@ -121,30 +121,117 @@ export default function ExtracurricularCategories() {
                       .replace(/\s+/g, "-")
                       .replace(/[^\w-]/g, "")
 
+                    // Enhanced parsing function to handle instructor names with academic titles
                     const parseDescription = (desc: string) => {
-                      const lines = desc.split("\r\n");
-                      return {
-                        main: lines[0] || "",
-                        instructor:
-                          lines
-                            .find((line) =>
-                              /(?:Guru\s*)?Pembina/i.test(line)
-                            )
-                            ?.replace(/(?:Guru\s*)?Pembina\s*:/i, "")
-                            .trim() || "",
-                        location:
-                          lines
-                            .find((line) => line.includes("Tempat"))
-                            ?.replace("Tempat:", "")
-                            .trim() || "",
-                        schedule:
-                          lines
-                            .find((line) => line.includes("Waktu"))
-                            ?.replace("Waktu:", "")
-                            .trim() || "",
-                      };
-                    };
+                      const lines = desc.split(/\r?\n/).filter((line) => line.trim() !== "")
 
+                      // Find all instructor lines
+                      const instructorLines = lines.filter(
+                        (line) => line.toLowerCase().includes("pembina") || line.toLowerCase().includes("guru pembina"),
+                      )
+
+                      // Extract instructor names with smart parsing for academic titles
+                      const instructorNames = new Set<string>()
+                      instructorLines.forEach((line) => {
+                        // Remove various prefixes and clean up
+                        const cleanLine = line
+                          .replace(/^.*?pembina\s*:?\s*/i, "")
+                          .replace(/^.*?guru\s+pembina\s*:?\s*/i, "")
+                          .trim()
+
+                        if (cleanLine) {
+                          // Pisah antar orang berdasarkan " dan "
+                          const instructors = cleanLine.split(/\s+dan\s+/i)
+                          
+                          instructors.forEach((name) => {
+                            const trimmedName = name.trim()
+                            if (trimmedName && trimmedName.length > 2) {
+                              instructorNames.add(trimmedName)
+                            }
+                          })
+                        }
+                      })
+
+                      // Get other information
+                      const locationLine = lines.find(
+                        (line) => line.toLowerCase().includes("tempat") && !line.toLowerCase().includes("pembina"),
+                      )
+                      const scheduleLine = lines.find(
+                        (line) => line.toLowerCase().includes("waktu") && !line.toLowerCase().includes("pembina"),
+                      )
+
+                      // Get main description (first line that's not instructor/location/schedule)
+                      const mainDesc =
+                        lines.find(
+                          (line) =>
+                            !line.toLowerCase().includes("pembina") &&
+                            !line.toLowerCase().includes("tempat") &&
+                            !line.toLowerCase().includes("waktu") &&
+                            line.trim().length > 10,
+                        ) ||
+                        lines[0] ||
+                        ""
+
+                      return {
+                        main: mainDesc.trim(),
+                        instructors: Array.from(instructorNames),
+                        location: locationLine ? locationLine.replace(/^.*?tempat\s*:?\s*/i, "").trim() : "",
+                        schedule: scheduleLine ? scheduleLine.replace(/^.*?waktu\s*:?\s*/i, "").trim() : "",
+                      }
+                    }
+
+                    // Function to intelligently parse instructor names
+                    const parseInstructorNames = (text: string): string[] => {
+                      // If the text contains academic titles, we need to be more careful about splitting
+                      const academicTitles = /\b(S\.Pd|M\.Pd|S\.Sn|M\.Sn|S\.Si|M\.Si|S\.Kom|M\.Kom|Dr\.|Prof\.)\b/gi
+
+                      // First, let's identify potential name boundaries
+                      // Split by "dan" but only if it's not part of an academic title context
+                      const parts = text.split(/\s+dan\s+/i)
+
+                      const names: string[] = []
+
+                      for (let i = 0; i < parts.length; i++) {
+                        const part = parts[i].trim()
+
+                        // Check if this part ends with an academic title
+                        const hasAcademicTitle = academicTitles.test(part)
+
+                        if (hasAcademicTitle) {
+                          // This is likely a complete name with title
+                          names.push(part)
+                        } else if (i < parts.length - 1) {
+                          // Check if the next part starts with an academic title or contains one
+                          const nextPart = parts[i + 1].trim()
+                          const nextHasTitle = academicTitles.test(nextPart)
+
+                          if (nextHasTitle && !nextPart.match(/^[A-Z]/)) {
+                            // The next part seems to be a continuation (title), combine them
+                            names.push(`${part} dan ${nextPart}`)
+                            i++ // Skip the next part as we've already processed it
+                          } else {
+                            // This seems to be a separate name without title
+                            names.push(part)
+                          }
+                        } else {
+                          // Last part
+                          names.push(part)
+                        }
+                      }
+
+                      // Additional cleanup: split by commas for multiple names
+                      const finalNames: string[] = []
+                      names.forEach((name) => {
+                        if (name.includes(",") && !academicTitles.test(name)) {
+                          // Split by comma only if no academic title is present
+                          finalNames.push(...name.split(",").map((n) => n.trim()))
+                        } else {
+                          finalNames.push(name)
+                        }
+                      })
+
+                      return finalNames.filter((name) => name.length > 2)
+                    }
 
                     const details = parseDescription(activity.description)
 
@@ -174,26 +261,29 @@ export default function ExtracurricularCategories() {
 
                         {/* Content */}
                         <div className="p-6">
-                          
+                         
 
                           {/* Details */}
                           <div className="space-y-2 mb-6">
-                            {details.instructor && (
-                              <div className="flex items-center text-sm text-gray-500">
-                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-                                <span className="font-medium">Pembina:</span>
-                                <span className="ml-1">{details.instructor}</span>
+                            {details.instructors.length > 0 && (
+                              <div className="space-y-1">
+                                <div className="flex items-start text-sm text-gray-500">
+                                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></div>
+                                  <div>
+                                    <span className="font-medium">Pembina:  {details.instructors.join(", ")}</span>
+                                  </div>
+                                </div>
                               </div>
                             )}
                             {details.location && (
                               <div className="flex items-center text-sm text-gray-500">
-                                <MapPin className="h-3 w-3 mr-2 text-green-500" />
+                                <MapPin className="h-3 w-3 mr-2 text-green-500 flex-shrink-0" />
                                 <span>{details.location}</span>
                               </div>
                             )}
                             {details.schedule && (
                               <div className="flex items-center text-sm text-gray-500">
-                                <Clock className="h-3 w-3 mr-2 text-purple-500" />
+                                <Clock className="h-3 w-3 mr-2 text-purple-500 flex-shrink-0" />
                                 <span>{details.schedule}</span>
                               </div>
                             )}

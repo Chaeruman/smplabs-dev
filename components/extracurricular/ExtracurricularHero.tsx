@@ -28,7 +28,7 @@ export default function ExtracurricularHero() {
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <Trophy className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-800" />
               </div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">50+</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">100+</div>
               <div className="text-white/80 text-sm sm:text-base">Prestasi</div>
             </div>
 
@@ -36,7 +36,7 @@ export default function ExtracurricularHero() {
               <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-400 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <Users className="h-6 w-6 sm:h-8 sm:w-8 text-green-800" />
               </div>
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">800+</div>
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">900+</div>
               <div className="text-white/80 text-sm sm:text-base">Siswa Aktif</div>
             </div>
 

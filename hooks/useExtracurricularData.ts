@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import type { ExtracurricularCategory } from "@/types/extracurricular"
 import { fetchExtracurricularData } from "@/lib/extracurricular-api"
+import type { ExtracurricularCategory } from "@/types/extracurricular"
 
 export function useExtracurricularData() {
   const [data, setData] = useState<ExtracurricularCategory[]>([])
@@ -13,14 +13,12 @@ export function useExtracurricularData() {
     async function loadData() {
       try {
         setLoading(true)
-        const result = await fetchExtracurricularData()
-        setData(result)
+        const categories = await fetchExtracurricularData()
+        setData(categories)
         setError(null)
       } catch (err) {
         console.error("Error loading extracurricular data:", err)
         setError(err instanceof Error ? err.message : "Failed to load data")
-        // Set fallback data even on error
-        setData([])
       } finally {
         setLoading(false)
       }

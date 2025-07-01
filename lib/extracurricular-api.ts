@@ -23,7 +23,7 @@ const fallbackData: ExtracurricularCategory[] = [
       {
         name: "Futsal",
         description:
-          "Olahraga futsal untuk melatih kecepatan dan ketangkasan\r\nPembina: Rizki Pratama, S.Pd.\r\nTempat: Lapangan Futsal\r\nWaktu: Rabu & Jumat, 15.30 - 17.00 WIB",
+          "Olahraga futsal untuk melatih kecepatan dan ketangkasan\r\nPembina: Rizki Pratama, S.Pd. dan Kevin Archie Luciano, S.Pd.\r\nTempat: Lapangan Futsal\r\nWaktu: Rabu & Jumat, 15.30 - 17.00 WIB",
         participants: "35 siswa aktif",
       },
     ],
@@ -65,6 +65,24 @@ const fallbackData: ExtracurricularCategory[] = [
         description:
           "Klub bahasa Inggris untuk meningkatkan kemampuan berbahasa\r\nPembina: Sarah Johnson, M.A.\r\nTempat: Lab Bahasa\r\nWaktu: Rabu & Jumat, 15.30 - 17.00 WIB",
         participants: "28 siswa aktif",
+      },
+      {
+        name: "Acolab/komik",
+        description:
+          "Kegiatan komik dan laboratorium kreatif\r\nGuru Pembina: Mifta Putri Apriyani, S.Pd.\r\nPembina: Mifta Putri Apriyani, S.Pd.\r\nTempat: Kelas VII E\r\nWaktu: Kamis, 15.30 - 17.00 WIB",
+        participants: "91 siswa",
+      },
+      {
+        name: "Bahasa Perancis",
+        description:
+          "Pembelajaran bahasa Perancis untuk siswa\r\nGuru Pembina: Purwanti, S.Pd.\r\nTempat: Kelas VII D\r\nWaktu: Senin, 15.30 - 17.00 WIB",
+        participants: "5 siswa",
+      },
+      {
+        name: "Bahasa Jepang",
+        description:
+          "Pembelajaran bahasa Jepang untuk siswa\r\nGuru Pembina: Ropingah, S.Pd.\r\nTempat: Kelas VII A\r\nWaktu: Jumat, 13.00 - 14.30 WIB",
+        participants: "121 siswa",
       },
       {
         name: "Olimpiade Matematika",
