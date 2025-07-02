@@ -4,6 +4,16 @@ import { ArrowLeft, Users, Clock, MapPin, Award } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
+// Utility function to generate consistent slugs
+function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+}
+
 // Generate static params for all activities
 export async function generateStaticParams() {
   try {
@@ -12,14 +22,12 @@ export async function generateStaticParams() {
 
     categories.forEach((category) => {
       category.activities.forEach((activity) => {
-        const slug = activity.name
-          .toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/[^\w-]/g, "")
+        const slug = generateSlug(activity.name)
         params.push({ slug })
       })
     })
 
+    console.log("Generated static params:", params)
     return params
   } catch (error) {
     console.error("Error generating static params:", error)
@@ -45,10 +53,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
 
     for (const category of categories) {
       for (const activity of category.activities) {
-        const activitySlug = activity.name
-          .toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/[^\w-]/g, "")
+        const activitySlug = generateSlug(activity.name)
 
         if (activitySlug === slug) {
           foundActivity = activity
@@ -60,60 +65,12 @@ export default async function ActivityDetailPage({ params }: PageProps) {
     }
 
     if (!foundActivity || !foundCategory) {
+      console.log(`Activity not found for slug: ${slug}`)
+      console.log(
+        "Available activities:",
+        categories.flatMap((cat) => cat.activities.map((act) => ({ name: act.name, slug: generateSlug(act.name) }))),
+      )
       notFound()
-    }
-
-    // Function to intelligently parse instructor names
-    const parseInstructorNames = (text: string): string[] => {
-      // If the text contains academic titles, we need to be more careful about splitting
-      const academicTitles = /\b(S\.Pd|M\.Pd|S\.Sn|M\.Sn|S\.Si|M\.Si|S\.Kom|M\.Kom|Dr\.|Prof\.)\b/gi
-
-      // First, let's identify potential name boundaries
-      // Split by "dan" but only if it's not part of an academic title context
-      const parts = text.split(/\s+dan\s+/i)
-
-      const names: string[] = []
-
-      for (let i = 0; i < parts.length; i++) {
-        const part = parts[i].trim()
-
-        // Check if this part ends with an academic title
-        const hasAcademicTitle = academicTitles.test(part)
-
-        if (hasAcademicTitle) {
-          // This is likely a complete name with title
-          names.push(part)
-        } else if (i < parts.length - 1) {
-          // Check if the next part starts with an academic title or contains one
-          const nextPart = parts[i + 1].trim()
-          const nextHasTitle = academicTitles.test(nextPart)
-
-          if (nextHasTitle && !nextPart.match(/^[A-Z]/)) {
-            // The next part seems to be a continuation (title), combine them
-            names.push(`${part} dan ${nextPart}`)
-            i++ // Skip the next part as we've already processed it
-          } else {
-            // This seems to be a separate name without title
-            names.push(part)
-          }
-        } else {
-          // Last part
-          names.push(part)
-        }
-      }
-
-      // Additional cleanup: split by commas for multiple names
-      const finalNames: string[] = []
-      names.forEach((name) => {
-        if (name.includes(",") && !academicTitles.test(name)) {
-          // Split by comma only if no academic title is present
-          finalNames.push(...name.split(",").map((n) => n.trim()))
-        } else {
-          finalNames.push(name)
-        }
-      })
-
-      return finalNames.filter((name) => name.length > 2)
     }
 
     // Enhanced parsing function to handle instructor names with academic titles
@@ -135,12 +92,12 @@ export default async function ActivityDetailPage({ params }: PageProps) {
           .trim()
 
         if (cleanLine) {
-          // Smart splitting that considers academic titles
-          const instructors = parseInstructorNames(cleanLine)
-          instructors.forEach((name) => {
-            const trimmedName = name.trim()
-            if (trimmedName && trimmedName.length > 2) {
-              instructorNames.add(trimmedName)
+          // Split by "dan" but be smart about academic titles
+          const parts = cleanLine.split(/\s+dan\s+/i)
+          parts.forEach((part) => {
+            const trimmedPart = part.trim()
+            if (trimmedPart && trimmedPart.length > 2) {
+              instructorNames.add(trimmedPart)
             }
           })
         }
@@ -351,10 +308,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
                       .filter((activity) => activity.name !== foundActivity.name)
                       .slice(0, 3)
                       .map((activity) => {
-                        const relatedSlug = activity.name
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")
-                          .replace(/[^\w-]/g, "")
+                        const relatedSlug = generateSlug(activity.name)
 
                         return (
                           <Link

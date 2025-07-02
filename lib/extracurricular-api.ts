@@ -26,6 +26,18 @@ const fallbackData: ExtracurricularCategory[] = [
           "Olahraga futsal untuk melatih kecepatan dan ketangkasan\r\nPembina: Rizki Pratama, S.Pd. dan Kevin Archie Luciano, S.Pd.\r\nTempat: Lapangan Futsal\r\nWaktu: Rabu & Jumat, 15.30 - 17.00 WIB",
         participants: "35 siswa aktif",
       },
+      {
+        name: "Voli",
+        description:
+          "Olahraga bola voli untuk melatih koordinasi dan kerjasama tim\r\nPembina: Sari Dewi, S.Pd.\r\nTempat: Lapangan Voli\r\nWaktu: Senin & Rabu, 15.30 - 17.00 WIB",
+        participants: "28 siswa aktif",
+      },
+      {
+        name: "Badminton",
+        description:
+          "Olahraga bulutangkis untuk melatih kelincahan dan refleks\r\nPembina: Budi Santoso, S.Pd.\r\nTempat: Hall Olahraga\r\nWaktu: Selasa & Kamis, 15.30 - 17.00 WIB",
+        participants: "32 siswa aktif",
+      },
     ],
   },
   {
@@ -51,6 +63,18 @@ const fallbackData: ExtracurricularCategory[] = [
         description:
           "Kegiatan bernyanyi bersama untuk mengembangkan bakat vokal\r\nPembina: Maria Magdalena, S.Pd.\r\nTempat: Ruang Musik\r\nWaktu: Jumat, 15.30 - 17.00 WIB",
         participants: "40 siswa aktif",
+      },
+      {
+        name: "Teater",
+        description:
+          "Seni peran dan drama untuk mengembangkan kepercayaan diri\r\nPembina: Andi Wijaya, S.Sn.\r\nTempat: Aula Utama\r\nWaktu: Rabu & Jumat, 15.30 - 17.00 WIB",
+        participants: "22 siswa aktif",
+      },
+      {
+        name: "Seni Lukis",
+        description:
+          "Kegiatan melukis dan menggambar untuk mengasah kreativitas\r\nPembina: Ratna Sari, S.Sn.\r\nTempat: Studio Seni\r\nWaktu: Senin & Kamis, 15.30 - 17.00 WIB",
+        participants: "25 siswa aktif",
       },
     ],
   },
@@ -96,10 +120,16 @@ const fallbackData: ExtracurricularCategory[] = [
           "Pembelajaran teknologi robotika dan programming\r\nPembina: Ir. Andi Wijaya, M.T.\r\nTempat: Lab Komputer\r\nWaktu: Senin & Rabu, 15.30 - 17.00 WIB",
         participants: "22 siswa aktif",
       },
+      {
+        name: "Sains Club",
+        description:
+          "Klub sains untuk eksperimen dan penelitian ilmiah\r\nPembina: Dr. Sari Indah, M.Si.\r\nTempat: Lab IPA\r\nWaktu: Selasa & Kamis, 15.30 - 17.00 WIB",
+        participants: "18 siswa aktif",
+      },
     ],
   },
   {
-    title: "Media & Komunikasi",
+    title: "Teknologi & Media",
     icon: "Camera",
     color: "from-orange-500 to-red-500",
     bgColor: "from-orange-50 to-red-50",
@@ -121,6 +151,24 @@ const fallbackData: ExtracurricularCategory[] = [
         description:
           "Pelatihan penyiaran radio dan TV sekolah\r\nPembina: Indira Sari, S.I.Kom.\r\nTempat: Studio Broadcasting\r\nWaktu: Senin & Rabu, 15.30 - 17.00 WIB",
         participants: "12 siswa aktif",
+      },
+      {
+        name: "Desain Grafis",
+        description:
+          "Belajar desain grafis dan multimedia\r\nPembina: Rudi Hartono, S.Kom.\r\nTempat: Lab Multimedia\r\nWaktu: Selasa & Kamis, 15.30 - 17.00 WIB",
+        participants: "24 siswa aktif",
+      },
+      {
+        name: "Web Development",
+        description:
+          "Pembelajaran pembuatan website dan aplikasi web\r\nPembina: Fajar Nugraha, S.Kom.\r\nTempat: Lab Komputer\r\nWaktu: Senin & Rabu, 15.30 - 17.00 WIB",
+        participants: "18 siswa aktif",
+      },
+      {
+        name: "Video Editing",
+        description:
+          "Belajar editing video dan produksi konten digital\r\nPembina: Maya Sari, S.I.Kom.\r\nTempat: Studio Multimedia\r\nWaktu: Kamis & Jumat, 15.30 - 17.00 WIB",
+        participants: "22 siswa aktif",
       },
     ],
   },

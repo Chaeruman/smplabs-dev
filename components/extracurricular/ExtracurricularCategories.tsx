@@ -13,6 +13,16 @@ const iconMap = {
   Camera,
 }
 
+// Utility function to generate consistent slugs
+function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "")
+}
+
 export default function ExtracurricularCategories() {
   const { data: categories, loading, error } = useExtracurricularData()
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
@@ -116,10 +126,7 @@ export default function ExtracurricularCategories() {
                 {/* Activities Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                   {category.activities.map((activity) => {
-                    const slug = activity.name
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")
-                      .replace(/[^\w-]/g, "")
+                    const slug = generateSlug(activity.name)
 
                     // Enhanced parsing function to handle instructor names with academic titles
                     const parseDescription = (desc: string) => {
@@ -140,13 +147,12 @@ export default function ExtracurricularCategories() {
                           .trim()
 
                         if (cleanLine) {
-                          // Pisah antar orang berdasarkan " dan "
-                          const instructors = cleanLine.split(/\s+dan\s+/i)
-                          
-                          instructors.forEach((name) => {
-                            const trimmedName = name.trim()
-                            if (trimmedName && trimmedName.length > 2) {
-                              instructorNames.add(trimmedName)
+                          // Split by "dan" but be smart about academic titles
+                          const parts = cleanLine.split(/\s+dan\s+/i)
+                          parts.forEach((part) => {
+                            const trimmedPart = part.trim()
+                            if (trimmedPart && trimmedPart.length > 2) {
+                              instructorNames.add(trimmedPart)
                             }
                           })
                         }
@@ -180,59 +186,6 @@ export default function ExtracurricularCategories() {
                       }
                     }
 
-                    // Function to intelligently parse instructor names
-                    const parseInstructorNames = (text: string): string[] => {
-                      // If the text contains academic titles, we need to be more careful about splitting
-                      const academicTitles = /\b(S\.Pd|M\.Pd|S\.Sn|M\.Sn|S\.Si|M\.Si|S\.Kom|M\.Kom|Dr\.|Prof\.)\b/gi
-
-                      // First, let's identify potential name boundaries
-                      // Split by "dan" but only if it's not part of an academic title context
-                      const parts = text.split(/\s+dan\s+/i)
-
-                      const names: string[] = []
-
-                      for (let i = 0; i < parts.length; i++) {
-                        const part = parts[i].trim()
-
-                        // Check if this part ends with an academic title
-                        const hasAcademicTitle = academicTitles.test(part)
-
-                        if (hasAcademicTitle) {
-                          // This is likely a complete name with title
-                          names.push(part)
-                        } else if (i < parts.length - 1) {
-                          // Check if the next part starts with an academic title or contains one
-                          const nextPart = parts[i + 1].trim()
-                          const nextHasTitle = academicTitles.test(nextPart)
-
-                          if (nextHasTitle && !nextPart.match(/^[A-Z]/)) {
-                            // The next part seems to be a continuation (title), combine them
-                            names.push(`${part} dan ${nextPart}`)
-                            i++ // Skip the next part as we've already processed it
-                          } else {
-                            // This seems to be a separate name without title
-                            names.push(part)
-                          }
-                        } else {
-                          // Last part
-                          names.push(part)
-                        }
-                      }
-
-                      // Additional cleanup: split by commas for multiple names
-                      const finalNames: string[] = []
-                      names.forEach((name) => {
-                        if (name.includes(",") && !academicTitles.test(name)) {
-                          // Split by comma only if no academic title is present
-                          finalNames.push(...name.split(",").map((n) => n.trim()))
-                        } else {
-                          finalNames.push(name)
-                        }
-                      })
-
-                      return finalNames.filter((name) => name.length > 2)
-                    }
-
                     const details = parseDescription(activity.description)
 
                     return (
@@ -261,7 +214,10 @@ export default function ExtracurricularCategories() {
 
                         {/* Content */}
                         <div className="p-6">
-                         
+                          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                            {details.main ||
+                              `Kegiatan ${activity.name} yang menarik dan bermanfaat untuk pengembangan diri siswa.`}
+                          </p>
 
                           {/* Details */}
                           <div className="space-y-2 mb-6">
@@ -270,7 +226,7 @@ export default function ExtracurricularCategories() {
                                 <div className="flex items-start text-sm text-gray-500">
                                   <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></div>
                                   <div>
-                                    <span className="font-medium">Pembina:  {details.instructors.join(", ")}</span>
+                                    <span className="font-medium">Pembina: {details.instructors.join(", ")}</span>
                                   </div>
                                 </div>
                               </div>
