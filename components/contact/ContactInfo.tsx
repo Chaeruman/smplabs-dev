@@ -15,8 +15,8 @@ const ContactInfo = () => {
     {
       icon: Mail,
       title: "Email",
-      info: "admin@smplabschooljakarta.sch.id",
-      link: "mailto:admin@smplabschooljakarta.sch.id",
+      info: "tusmplabsjkt@labschool.xyz",
+      link: "mailto:tusmplabsjkt@labschool.xyz",
       color: "from-blue-400 to-cyan-500",
       bgColor: "from-blue-50 to-cyan-50",
     },

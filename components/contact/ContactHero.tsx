@@ -34,7 +34,7 @@ const ContactHero = () => {
             </a>
 
             <a
-              href="mailto:admin@smplabschooljakarta.sch.id"
+              href="mailto:tusmplabsjkt@labschool.xyz"
               className="group bg-white/10 backdrop-blur-md rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105"
             >
               <Mail className="h-8 w-8 mx-auto mb-2 text-blue-300 group-hover:text-blue-200 transition-colors" />
