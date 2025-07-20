@@ -11,7 +11,7 @@ const HeroSection = () => {
   const slides = [
     {
       image: "/banner-labschool.jpg",
-      title: "SMP Labschool Jakarta Rawamangun",
+      title: "SMP Labschool Jakarta",
       subtitle: "Labsraw - Sekolah Menengah Pertama Terbaik di Jakarta",
       description:
         "Bagian dari Labschool UNJ yang menghasilkan siswa berprestasi dengan fasilitas modern dan kurikulum berkualitas tinggi",
@@ -28,7 +28,7 @@ const HeroSection = () => {
     },
     {
       image: "/placeholder.svg?height=600&width=1200",
-      title: "Fasilitas Modern di Rawamangun",
+      title: "Fasilitas Modern di Labschool",
       subtitle: "Lingkungan Belajar Terbaik untuk Masa Depan Cerah",
       description: "Fasilitas lengkap dan modern mendukung proses pembelajaran yang efektif dan menyenangkan",
       cta: "Jelajahi Fasilitas",
@@ -70,7 +70,7 @@ const HeroSection = () => {
           >
             <Image
               src={slide.image || "/placeholder.svg"}
-              alt={`${slide.title} - SMP Labschool Jakarta Rawamangun`}
+              alt={`${slide.title} - SMP Labschool Jakarta`}
               fill
               className="object-cover"
               priority={index === 0}
