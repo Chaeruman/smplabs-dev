@@ -1,30 +1,134 @@
-# Sekolah profil website
+# SMP Labschool Jakarta - Website
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Website resmi SMP Labschool Jakarta yang dibangun dengan Next.js dan teknologi modern.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/pandureynaldos-projects/v0-sekolah-profil-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/Z8fYOIwvrEz)
+## 📋 Deskripsi
 
-## Overview
+Website SMP Labschool Jakarta adalah platform digital yang menyediakan informasi lengkap tentang sekolah, termasuk profil sekolah, kegiatan, ekstrakurikuler, galeri, dan informasi kontak. Website ini dirancang dengan fokus pada user experience yang optimal dan responsif di berbagai perangkat.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## ✨ Fitur
 
-## Deployment
+- **Halaman Beranda**: Hero section, visi misi, statistik sekolah, dan berita terbaru
+- **Halaman Tentang**: Profil lengkap SMP Labschool Jakarta
+- **Halaman Kegiatan**: Informasi kegiatan sekolah dan acara
+- **Halaman Ekstrakurikuler**: Daftar dan informasi ekstrakurikuler yang tersedia
+- **Halaman Galeri**: Galeri foto kegiatan dan acara sekolah
+- **Halaman Kontak**: Informasi kontak dan lokasi sekolah
+- **Responsif**: Optimized untuk desktop, tablet, dan mobile
+- **SEO Optimized**: Meta tags, sitemap, dan struktur yang SEO-friendly
+- **Modern UI**: Menggunakan Tailwind CSS dan Radix UI components
 
-Your project is live at:
+## 🛠️ Tech Stack
 
-**[https://vercel.com/pandureynaldos-projects/v0-sekolah-profil-website](https://vercel.com/pandureynaldos-projects/v0-sekolah-profil-website)**
+- **Framework**: Next.js 15.2.4
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **Icons**: Lucide React
+- **Forms**: React Hook Form + Zod
+- **Deployment**: Vercel
 
-## Build your app
+## 🚀 Instalasi
 
-Continue building your app on:
+### Prerequisites
 
-**[https://v0.dev/chat/projects/Z8fYOIwvrEz](https://v0.dev/chat/projects/Z8fYOIwvrEz)**
+- Node.js 18+ 
+- pnpm (recommended) atau npm
 
-## How It Works
+### Setup
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+1. Clone repository
+```bash
+git clone <repository-url>
+cd smplabs-landing
+```
+
+2. Install dependencies
+```bash
+pnpm install
+# atau
+npm install
+```
+
+3. Run development server
+```bash
+pnpm dev
+# atau
+npm run dev
+```
+
+4. Buka [http://localhost:3000](http://localhost:3000) di browser
+
+## 📁 Struktur Project
+
+```
+smplabs-landing/
+├── app/                    # Next.js app directory
+│   ├── galeri/            # Halaman galeri
+│   ├── kegiatan/          # Halaman kegiatan
+│   ├── kontak/            # Halaman kontak
+│   ├── tentang/           # Halaman tentang
+│   ├── ekstrakurikuler/   # Halaman ekstrakurikuler
+│   ├── api/               # API routes
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Homepage
+├── components/             # React components
+│   ├── home/              # Homepage components
+│   ├── layout/            # Layout components
+│   ├── ui/                # Reusable UI components
+│   └── [pages]/           # Page-specific components
+├── lib/                    # Utility functions
+├── hooks/                  # Custom React hooks
+├── types/                  # TypeScript type definitions
+├── public/                 # Static assets
+└── styles/                 # Additional styles
+```
+
+## 🎨 Komponen
+
+Website ini menggunakan komponen yang modular dan reusable:
+
+- **Layout Components**: Header, Footer, Navigation
+- **Home Components**: HeroSection, VisionSection, StatsSection, NewsSection
+- **UI Components**: Button, Card, Modal, dan komponen Radix UI lainnya
+
+## 📱 Responsive Design
+
+Website dioptimalkan untuk berbagai ukuran layar:
+- Desktop (1024px+)
+- Tablet (768px - 1023px)
+- Mobile (320px - 767px)
+
+## 🔧 Scripts
+
+  ```bash
+  # Development
+  pnpm dev
+  
+  # Build untuk production
+pnpm build
+
+# Start production server
+pnpm start
+
+# Linting
+pnpm lint
+```
+
+## 🌐 Deployment
+
+Website ini di-deploy menggunakan Vercel dan dapat diakses di:
+**https://smplabschooljakarta.sch.id**
+
+## 📄 License
+
+Project ini dikembangkan untuk SMP Labschool Jakarta.
+
+## 🤝 Kontribusi
+
+Untuk kontribusi atau pertanyaan, silakan hubungi tim pengembang.
+
+---
+
+**SMP Labschool Jakarta** - Mendidik Generasi Unggul untuk Masa Depan

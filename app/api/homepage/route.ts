@@ -4,6 +4,8 @@ const API_BASE_URL = "https://satupemuda.smplabschooljakarta.sch.id"
 
 export async function GET() {
   console.log("=== API Route Called ===")
+  console.log("API_BASE_URL:", API_BASE_URL)
+  console.log("Full URL:", `${API_BASE_URL}/website/beranda`)
 
   try {
     console.log("Attempting to fetch from external API...")

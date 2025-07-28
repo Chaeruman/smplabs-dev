@@ -178,11 +178,20 @@ export default function ExtracurricularCategories() {
                         lines[0] ||
                         ""
 
+                      // Clean up location and schedule text
+                      const cleanLocation = locationLine 
+                        ? locationLine.replace(/^.*?tempat\s*:?\s*/i, "").trim()
+                        : ""
+                      
+                      const cleanSchedule = scheduleLine 
+                        ? scheduleLine.replace(/^.*?waktu\s*:?\s*/i, "").trim()
+                        : ""
+
                       return {
                         main: mainDesc.trim(),
                         instructors: Array.from(instructorNames),
-                        location: locationLine ? locationLine.replace(/^.*?tempat\s*:?\s*/i, "").trim() : "",
-                        schedule: scheduleLine ? scheduleLine.replace(/^.*?waktu\s*:?\s*/i, "").trim() : "",
+                        location: cleanLocation,
+                        schedule: cleanSchedule,
                       }
                     }
 
@@ -214,33 +223,42 @@ export default function ExtracurricularCategories() {
 
                         {/* Content */}
                         <div className="p-6">
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                          {/* <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
                             {details.main ||
                               `Kegiatan ${activity.name} yang menarik dan bermanfaat untuk pengembangan diri siswa.`}
-                          </p>
+                          </p> */}
 
                           {/* Details */}
-                          <div className="space-y-2 mb-6">
+                          <div className="space-y-3 mb-6">
                             {details.instructors.length > 0 && (
-                              <div className="space-y-1">
-                                <div className="flex items-start text-sm text-gray-500">
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 mt-1.5 flex-shrink-0"></div>
-                                  <div>
-                                    <span className="font-medium">Pembina: {details.instructors.join(", ")}</span>
+                              <div className="flex items-start text-sm text-gray-600">
+                                <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-1.5 flex-shrink-0"></div>
+                                <div className="flex-1">
+                                  <span className="font-medium text-gray-700">Pembina:</span>
+                                  <div className="mt-1 text-gray-600">
+                                    {details.instructors.map((instructor, idx) => (
+                                      <div key={idx} className="text-sm">{instructor}</div>
+                                    ))}
                                   </div>
                                 </div>
                               </div>
                             )}
                             {details.location && (
-                              <div className="flex items-center text-sm text-gray-500">
-                                <MapPin className="h-3 w-3 mr-2 text-green-500 flex-shrink-0" />
-                                <span>{details.location}</span>
+                              <div className="flex items-start text-sm text-gray-600">
+                                <MapPin className="h-4 w-4 mr-3 text-green-500 flex-shrink-0 mt-0.5" />
+                                <div className="flex-1">
+                                  <span className="font-medium text-gray-700">Tempat:</span>
+                                  <div className="mt-1">{details.location}</div>
+                                </div>
                               </div>
                             )}
                             {details.schedule && (
-                              <div className="flex items-center text-sm text-gray-500">
-                                <Clock className="h-3 w-3 mr-2 text-purple-500 flex-shrink-0" />
-                                <span>{details.schedule}</span>
+                              <div className="flex items-start text-sm text-gray-600">
+                                <Clock className="h-4 w-4 mr-3 text-purple-500 flex-shrink-0 mt-0.5" />
+                                <div className="flex-1">
+                                  <span className="font-medium text-gray-700">Waktu:</span>
+                                  <div className="mt-1">{details.schedule}</div>
+                                </div>
                               </div>
                             )}
                           </div>

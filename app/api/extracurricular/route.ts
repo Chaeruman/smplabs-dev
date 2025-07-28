@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server"
 import type { ExtracurricularCategory } from "@/types/extracurricular"
 
-// Mock data for extracurricular activities
-const extracurricularData: ExtracurricularCategory[] = [
+const API_BASE_URL = "https://satupemuda.smplabschooljakarta.sch.id"
+
+// Fallback data if external API fails
+const fallbackData: ExtracurricularCategory[] = [
   {
     title: "Olahraga",
     icon: "Trophy",
@@ -176,13 +178,53 @@ const extracurricularData: ExtracurricularCategory[] = [
 ]
 
 export async function GET() {
-  try {
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 100))
+  console.log("=== Extracurricular API Route Called ===")
+  console.log("API_BASE_URL:", API_BASE_URL)
+  console.log("Full URL:", `${API_BASE_URL}/website/ekstrakurikuler`)
 
-    return NextResponse.json(extracurricularData)
+  try {
+    console.log("Attempting to fetch from external API...")
+
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+
+    const response = await fetch(`${API_BASE_URL}/website/ekstrakurikuler`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "User-Agent": "SMP-Labschool-Website/1.0",
+      },
+      signal: controller.signal,
+      cache: "no-store",
+    })
+
+    clearTimeout(timeoutId)
+    console.log("External API response status:", response.status)
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    console.log("External API data received:", data)
+
+    return NextResponse.json(data, {
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
+    })
   } catch (error) {
-    console.error("Error in extracurricular API:", error)
-    return NextResponse.json({ error: "Failed to fetch extracurricular data" }, { status: 500 })
+    console.error("Error in extracurricular API route:", error)
+
+    // Return fallback data if external API fails
+    console.log("Returning fallback data from API route")
+
+    return NextResponse.json(fallbackData, {
+      status: 200,
+      headers: {
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120",
+      },
+    })
   }
 }
