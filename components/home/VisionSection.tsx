@@ -8,8 +8,7 @@ const VisionSection: React.FC = () => {
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-extrabold text-gray-800 mb-6">Visi Kami</h2>
         <p className="text-lg text-gray-600 mb-8">
-          Menjadi yang terdepan dalam inovasi teknologi, memberdayakan individu dan organisasi untuk mencapai potensi
-          penuh mereka melalui solusi digital yang transformatif.
+          Menciptakan lingkungan pendidikan yang positif, bersemangat, serta menginspirasi yang menghargai dan mendorong peserta didik menjadi pembelajar sepanjang hayat.
         </p>
         <Link
           href="/tentang"
