@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { DarkModeToggle } from "@/components/theme/DarkModeToggle"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -82,7 +83,9 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg shadow-blue-100/50" : "bg-white/90 backdrop-blur-sm"
+        isScrolled 
+          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg shadow-blue-100/50 dark:shadow-gray-900/50" 
+          : "bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm"
       }`}
     >
       <nav className="container-custom">
@@ -97,8 +100,8 @@ const Header = () => {
               className="rounded-full"
             />
             <div className="flex flex-col">
-              <span className="font-bold text-blue-600 text-lg">SMP Labschool</span>
-              <span className="text-xs text-gray-600">Jakarta</span>
+              <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">SMP Labschool</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">Jakarta</span>
             </div>
           </Link>
 
@@ -108,7 +111,7 @@ const Header = () => {
               <div key={item.href} className="relative group">
                 {item.hasDropdown ? (
                   <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <div className="flex items-center space-x-1 text-gray-600 hover:text-blue-500 font-medium transition-colors duration-200 cursor-pointer py-2">
+                    <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors duration-200 cursor-pointer py-2">
                       <span>{item.label}</span>
                       <ChevronDown
                         className={`h-4 w-4 transition-transform duration-200 ${isAboutDropdownOpen ? "rotate-180" : ""}`}
@@ -119,12 +122,12 @@ const Header = () => {
                     {/* Dropdown Menu */}
                     {isAboutDropdownOpen && (
                       <div className="absolute top-full left-0 pt-1 w-48">
-                        <div className="bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-blue-100 py-2 overflow-hidden">
+                        <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-lg shadow-lg border border-blue-100 dark:border-gray-700 py-2 overflow-hidden">
                           {item.dropdownItems?.map((dropdownItem, index) => (
                             <button
                               key={dropdownItem.href}
                               onClick={() => handleDropdownClick(dropdownItem.href, dropdownItem.section)}
-                              className="block w-full text-left px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-colors duration-200"
+                              className="block w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
                             >
                               {dropdownItem.label}
                             </button>
@@ -136,7 +139,7 @@ const Header = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-gray-600 hover:text-blue-500 font-medium transition-colors duration-200 relative group py-2"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group py-2"
                   >
                     {item.label}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
@@ -144,6 +147,7 @@ const Header = () => {
                 )}
               </div>
             ))}
+            <DarkModeToggle />
             <a
               href="https://satupemuda.smplabschooljakarta.sch.id/"
               target="_blank"
@@ -155,24 +159,27 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="md:hidden flex items-center space-x-2">
+            <DarkModeToggle />
+            <button
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-md shadow-lg border-t border-blue-100">
+          <div className="md:hidden absolute top-16 left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-blue-100 dark:border-gray-700">
             <div className="py-4 space-y-2">
               {navItems.map((item) => (
                 <div key={item.href}>
                   {item.hasDropdown ? (
                     <div>
                       <button
-                        className="flex items-center justify-between w-full px-4 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-colors"
+                        className="flex items-center justify-between w-full px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                         onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
                       >
                         <span>{item.label}</span>
@@ -181,7 +188,7 @@ const Header = () => {
                         />
                       </button>
                       {isAboutDropdownOpen && (
-                        <div className="pl-4 space-y-1 bg-gray-50/50">
+                        <div className="pl-4 space-y-1 bg-gray-50/50 dark:bg-gray-800/50">
                           {item.dropdownItems?.map((dropdownItem) => (
                             <button
                               key={dropdownItem.href}
@@ -190,7 +197,7 @@ const Header = () => {
                                 setIsMenuOpen(false)
                                 setIsAboutDropdownOpen(false)
                               }}
-                              className="block w-full text-left px-4 py-2 text-sm text-gray-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-colors"
+                              className="block w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                             >
                               {dropdownItem.label}
                             </button>
@@ -201,7 +208,7 @@ const Header = () => {
                   ) : (
                     <Link
                       href={item.href}
-                      className="block px-4 py-2 text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600 transition-colors"
+                      className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.label}

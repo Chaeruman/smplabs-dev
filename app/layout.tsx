@@ -4,6 +4,7 @@ import { Nunito_Sans } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
+import { ThemeProvider } from "@/components/theme/ThemeProvider"
 
 const nunitoSans = Nunito_Sans({ 
   subsets: ["latin"],
@@ -106,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="id">
+    <html lang="id" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="canonical" href="https://smplabschooljakarta.sch.id" />
@@ -158,9 +159,16 @@ export default function RootLayout({
         />
       </head>
       <body className={nunitoSans.className}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
