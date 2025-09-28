@@ -1,11 +1,15 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Nunito_Sans } from "next/font/google"
 import "./globals.css"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const nunitoSans = Nunito_Sans({ 
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-nunito-sans"
+})
 
 export const metadata: Metadata = {
   title: {
@@ -153,7 +157,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={nunitoSans.className}>
         <Header />
         <main>{children}</main>
         <Footer />

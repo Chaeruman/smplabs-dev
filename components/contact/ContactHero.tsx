@@ -15,10 +15,10 @@ const ContactHero = () => {
 
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in-up">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-high-contrast drop-shadow-enhanced-lg">
             Hubungi Kami
           </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-blue-100 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl lg:text-2xl mb-8 text-high-contrast-sm max-w-2xl mx-auto leading-relaxed drop-shadow-soft">
             Kami siap membantu Anda dengan informasi lengkap tentang SMP Labschool Jakarta
           </p>
 
