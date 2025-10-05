@@ -20,8 +20,8 @@ const GalleryHero = () => {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-6 border border-white/30">
               <Camera className="h-10 w-10" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Galeri SMP Labschool</h1>
-            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-high-contrast drop-shadow-enhanced-lg">Galeri SMP Labschool</h1>
+            <p className="text-xl text-high-contrast-sm mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-soft">
               Dokumentasi kegiatan, fasilitas, dan momen berharga dalam perjalanan pendidikan di SMP Labschool Jakarta
             </p>
           </div>

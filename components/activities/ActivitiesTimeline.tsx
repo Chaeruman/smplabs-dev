@@ -9,6 +9,8 @@ const ActivitiesShowcase = () => {
   const [visibleItems, setVisibleItems] = useState<number[]>([])
   const [selectedCategory, setSelectedCategory] = useState("Semua")
   const [showAll, setShowAll] = useState(false)
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+  const [isFiltering, setIsFiltering] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -132,6 +134,25 @@ const ActivitiesShowcase = () => {
     return colors[index % colors.length]
   }
 
+  const handleCategoryChange = (category: string) => {
+    setIsFiltering(true)
+    setSelectedCategory(category)
+    
+    // Reset visible items for animation
+    setVisibleItems([])
+    
+    // Animate filtering
+    setTimeout(() => {
+      setIsFiltering(false)
+      // Re-animate items
+      featuredActivities.forEach((_, index) => {
+        setTimeout(() => {
+          setVisibleItems((prev) => [...prev, index])
+        }, index * 150)
+      })
+    }, 300)
+  }
+
   const filteredActivities =
     selectedCategory === "Semua"
       ? featuredActivities
@@ -172,17 +193,22 @@ const ActivitiesShowcase = () => {
           {/* Category Filter - Mobile Horizontal Scroll */}
           <div className="mb-6 sm:mb-8">
             <div className="flex overflow-x-auto pb-2 gap-2 sm:gap-3 scrollbar-hide sm:justify-center">
-              {categories.map((category) => (
+              {categories.map((category, index) => (
                 <button
                   key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`flex-shrink-0 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 whitespace-nowrap ${
+                  onClick={() => handleCategoryChange(category)}
+                  className={`flex-shrink-0 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-500 whitespace-nowrap group relative overflow-hidden ${
                     selectedCategory === category
-                      ? "bg-blue-500 text-white shadow-lg scale-105"
-                      : "bg-white text-gray-600 hover:bg-blue-50 border border-gray-200 shadow-sm"
-                  }`}
+                      ? "bg-blue-500 text-white shadow-lg scale-105 animate-bounce-in"
+                      : "bg-white text-gray-600 hover:bg-blue-50 border border-gray-200 shadow-sm hover:scale-105"
+                  } ${isFiltering ? 'opacity-50 pointer-events-none' : ''}`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  {category}
+                  <span className="relative z-10">{category}</span>
+                  {selectedCategory === category && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-20 animate-pulse"></div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </button>
               ))}
             </div>
@@ -196,16 +222,22 @@ const ActivitiesShowcase = () => {
             <div
               className={`transition-all duration-1000 ${
                 visibleItems.includes(0) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
+              } ${isFiltering ? 'opacity-0 scale-95' : ''}`}
             >
-              <div className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
+              <div 
+                className="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group card-hover relative"
+                onMouseEnter={() => setHoveredCard(0)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
                 <div className="relative">
                   <div className="relative h-48 sm:h-64 lg:h-80">
                     <Image
                       src={filteredActivities[0]?.image || "/placeholder.svg?height=400&width=800"}
                       alt={filteredActivities[0]?.title || ""}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className={`object-cover transition-all duration-700 group-hover:scale-110 ${
+                        hoveredCard === 0 ? 'scale-105' : ''
+                      }`}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                     />
                   </div>
@@ -214,27 +246,27 @@ const ActivitiesShowcase = () => {
                   {/* Mobile Badges */}
                   <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex flex-wrap gap-2">
                     <span
-                      className={`${getCategoryColor(filteredActivities[0]?.category || "")} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium`}
+                      className={`${getCategoryColor(filteredActivities[0]?.category || "")} text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}
                     >
                       {filteredActivities[0]?.category}
                     </span>
-                    <span className="bg-red-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                    <span className="bg-red-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg animate-pulse">
                       Featured
                     </span>
                   </div>
 
                   {/* Views Badge */}
-                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex items-center text-white/90 text-xs sm:text-sm bg-black/30 rounded-full px-2 py-1">
-                    <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-1" />
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 flex items-center text-white/90 text-xs sm:text-sm bg-black/30 rounded-full px-2 py-1 transition-all duration-300 group-hover:bg-black/50 group-hover:scale-110">
+                    <Eye className="h-3 w-3 sm:h-4 sm:w-4 mr-1 group-hover:animate-pulse" />
                     {filteredActivities[0]?.views}
                   </div>
 
                   {/* Content Overlay - Mobile Optimized */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 line-clamp-2">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 line-clamp-2 group-hover:text-yellow-200 transition-colors duration-300">
                       {filteredActivities[0]?.title}
                     </h3>
-                    <p className="text-sm sm:text-base opacity-90 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">
+                    <p className="text-sm sm:text-base opacity-90 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 group-hover:opacity-100 transition-opacity duration-300">
                       {filteredActivities[0]?.description}
                     </p>
 
@@ -263,17 +295,23 @@ const ActivitiesShowcase = () => {
                   key={activity.id}
                   className={`transition-all duration-1000 ${
                     visibleItems.includes(index + 1) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
+                  } ${isFiltering ? 'opacity-0 scale-95' : ''}`}
                   style={{ transitionDelay: `${(index + 1) * 200}ms` }}
                 >
-                  <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group h-full">
+                  <div 
+                    className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group h-full card-hover relative"
+                    onMouseEnter={() => setHoveredCard(activity.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
                     <div className="relative">
                       <div className="relative h-40 sm:h-48">
                         <Image
                           src={activity.image || "/placeholder.svg?height=250&width=400"}
                           alt={activity.title}
                           fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className={`object-cover transition-all duration-700 group-hover:scale-110 ${
+                            hoveredCard === activity.id ? 'scale-105' : ''
+                          }`}
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
@@ -282,23 +320,23 @@ const ActivitiesShowcase = () => {
                       {/* Mobile Badges */}
                       <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
                         <span
-                          className={`${getCategoryColor(activity.category)} text-white px-2 py-1 rounded-full text-xs font-medium`}
+                          className={`${getCategoryColor(activity.category)} text-white px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}
                         >
                           {activity.category}
                         </span>
                       </div>
 
-                      <div className="absolute top-2 sm:top-3 right-2 sm:right-3 flex items-center text-white/90 text-xs bg-black/30 rounded-full px-2 py-1">
-                        <Eye className="h-3 w-3 mr-1" />
+                      <div className="absolute top-2 sm:top-3 right-2 sm:right-3 flex items-center text-white/90 text-xs bg-black/30 rounded-full px-2 py-1 transition-all duration-300 group-hover:bg-black/50 group-hover:scale-110">
+                        <Eye className="h-3 w-3 mr-1 group-hover:animate-pulse" />
                         {activity.views}
                       </div>
                     </div>
 
                     <div className="p-4 sm:p-5">
-                      <h3 className="text-base sm:text-lg font-bold text-blue-900 mb-2 line-clamp-2">
+                      <h3 className="text-base sm:text-lg font-bold text-blue-900 mb-2 line-clamp-2 group-hover:text-purple-600 transition-colors duration-300">
                         {activity.title}
                       </h3>
-                      <p className="text-sm text-gray-700 mb-3 sm:mb-4 line-clamp-3">{activity.description}</p>
+                      <p className="text-sm text-gray-700 mb-3 sm:mb-4 line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">{activity.description}</p>
 
                       {/* Info List - Mobile Optimized */}
                       <div className="space-y-2 text-xs sm:text-sm text-gray-600 mb-4">
@@ -321,9 +359,10 @@ const ActivitiesShowcase = () => {
                       </div>
 
                       {/* Mobile Button */}
-                      <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-semibold transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:shadow-lg group">
-                        Lihat Detail
-                        <ArrowRight className="inline-block ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2.5 sm:py-3 px-4 rounded-lg text-sm font-semibold transition-all duration-500 hover:from-blue-600 hover:to-purple-600 hover:shadow-lg group btn-animate hover:scale-105 relative overflow-hidden">
+                        <span className="relative z-10">Lihat Detail</span>
+                        <ArrowRight className="inline-block ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </button>
                     </div>
                   </div>
@@ -345,11 +384,11 @@ const ActivitiesShowcase = () => {
               Jelajahi 30+ kegiatan menarik lainnya yang telah dilaksanakan sepanjang tahun akademik
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
-              <button className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 sm:px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center">
-                <Filter className="h-4 w-4 mr-2" />
+              <button className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 sm:px-6 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 flex items-center justify-center btn-animate hover:scale-105 group">
+                <Filter className="h-4 w-4 mr-2 group-hover:rotate-12 transition-transform duration-300" />
                 Lihat Semua Kegiatan
               </button>
-              <button className="flex-1 bg-white text-blue-600 border-2 border-blue-200 px-4 sm:px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300">
+              <button className="flex-1 bg-white text-blue-600 border-2 border-blue-200 px-4 sm:px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 hover:scale-105 hover:shadow-lg">
                 Download Kalender
               </button>
             </div>

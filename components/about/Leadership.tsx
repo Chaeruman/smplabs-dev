@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { Mail, Phone } from "lucide-react"
+import { Mail, Phone, Sparkles, Star, Award } from "lucide-react"
 
 const Leadership = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -75,29 +76,69 @@ const Leadership = () => {
                 index === 0 ? "card-soft-blue" : index === 1 ? "card-soft-pink" : "card-soft-green"
               } rounded-2xl shadow-lg overflow-hidden hover-glow transition-all duration-1000 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-              }`}
+              } card-3d group`}
               style={{ transitionDelay: `${index * 200}ms` }}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="relative h-64">
-                <Image src={leader.image || "/placeholder.svg"} alt={leader.name} fill className="object-cover" />
+              <div className="relative h-64 overflow-hidden">
+                <Image 
+                  src={leader.image || "/placeholder.svg"} 
+                  alt={leader.name} 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Floating badge */}
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg transform translate-x-10 group-hover:translate-x-0 transition-transform duration-500">
+                  <Award className="h-4 w-4 text-blue-600" />
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="absolute top-4 left-4 w-16 h-16 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-xl animate-pulse"></div>
+                <div className="absolute bottom-4 right-4 w-12 h-12 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-lg animate-pulse delay-1000"></div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{leader.name}</h3>
+              
+              <div className="p-6 relative">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 gradient-text">{leader.name}</h3>
                 <p className="text-purple-600 font-semibold mb-3">{leader.position}</p>
                 <p className="text-gray-600 mb-4 text-sm leading-relaxed">{leader.description}</p>
+                
                 <div className="space-y-2">
-                  <div className="flex items-center text-gray-500 text-sm">
+                  <div className="flex items-center text-gray-500 text-sm group-hover:text-purple-600 transition-colors duration-300">
                     <Mail className="h-4 w-4 mr-2" />
                     <a href={`mailto:${leader.email}`} className="hover:text-purple-600 transition-colors">
                       {leader.email}
                     </a>
                   </div>
-                  <div className="flex items-center text-gray-500 text-sm">
+                  <div className="flex items-center text-gray-500 text-sm group-hover:text-blue-600 transition-colors duration-300">
                     <Phone className="h-4 w-4 mr-2" />
                     <a href={`tel:${leader.phone}`} className="hover:text-blue-600 transition-colors">
                       {leader.phone}
                     </a>
                   </div>
+                </div>
+                
+                {/* Hover effects */}
+                {hoveredCard === index && (
+                  <div className="absolute -top-2 -right-2 animate-bounce">
+                    {index % 2 === 0 ? (
+                      <Sparkles className="h-4 w-4 text-yellow-400" />
+                    ) : (
+                      <Star className="h-4 w-4 text-yellow-400" />
+                    )}
+                  </div>
+                )}
+                
+                {/* Progress bar animation */}
+                <div className="mt-4 h-1 bg-gray-200 rounded-full overflow-hidden">
+                  <div 
+                    className={`h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000 ${
+                      isVisible ? 'w-full' : 'w-0'
+                    }`}
+                    style={{ transitionDelay: `${index * 200 + 500}ms` }}
+                  ></div>
                 </div>
               </div>
             </div>

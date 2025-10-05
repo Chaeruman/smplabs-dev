@@ -14,10 +14,10 @@ export default function ExtracurricularHero() {
         <div className="w-full py-16 sm:py-20 lg:py-24">
           {/* Main Content */}
           <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight text-high-contrast drop-shadow-enhanced-lg">
               Ekstrakurikuler
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed px-4">
+            <p className="text-lg sm:text-xl lg:text-2xl text-high-contrast-sm max-w-4xl mx-auto leading-relaxed px-4 drop-shadow-soft">
               Kembangkan bakat dan minat Anda melalui berbagai kegiatan ekstrakurikuler yang menarik dan bermanfaat
             </p>
           </div>

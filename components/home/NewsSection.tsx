@@ -24,6 +24,13 @@ const NewsSection = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
+          // Add visible class to animate-on-scroll elements
+          const animatedElements = entry.target.querySelectorAll('.animate-on-scroll')
+          animatedElements.forEach((el, index) => {
+            setTimeout(() => {
+              el.classList.add('visible')
+            }, index * 200)
+          })
         }
       },
       { threshold: 0.1 }, // Reduced threshold
@@ -125,19 +132,21 @@ const NewsSection = () => {
               key={item.id}
               className={`${
                 index === 0 ? "card-soft-blue" : index === 1 ? "card-soft-green" : "card-soft-orange"
-              } rounded-2xl shadow-lg overflow-hidden hover-glow transition-all duration-500`}
+              } rounded-2xl shadow-lg overflow-hidden hover-glow transition-all duration-500 card-hover animate-on-scroll`}
+              style={{ animationDelay: `${index * 200}ms` }}
             >
-              <div className="relative h-48">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src={item.image || "/placeholder.svg?height=200&width=300"}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
                     target.src = "/placeholder.svg?height=200&width=300"
                   }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 left-4">
                   <span
                     className={`${
@@ -152,27 +161,27 @@ const NewsSection = () => {
                   </span>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-6 group">
                 <div className="flex items-center text-gray-500 text-sm mb-3">
                   <Calendar className="h-4 w-4 mr-2" />
                   {item.date}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">{item.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300">{item.title}</h3>
                 <p className="text-gray-600 mb-4 line-clamp-3">{item.excerpt}</p>
                 <Link
                   href={`/berita/${item.id}`}
-                  className="inline-flex items-center text-blue-600 font-semibold hover:text-purple-600 transition-colors group"
+                  className="inline-flex items-center text-blue-600 font-semibold hover:text-purple-600 transition-all duration-300 group-hover:scale-105"
                 >
                   Baca Selengkapnya
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>
             </article>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Link href="/kegiatan" className="btn-primary">
+        <div className="text-center mt-12 animate-on-scroll">
+          <Link href="/kegiatan" className="btn-primary btn-animate hover:scale-105 transition-all duration-300">
             Lihat Semua Kegiatan
           </Link>
         </div>

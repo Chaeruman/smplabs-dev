@@ -1,8 +1,6 @@
-import AboutHero from "@/components/about/AboutHero"
-import VisionMission from "@/components/about/VisionMission"
-import History from "@/components/about/History"
-import Leadership from "@/components/about/Leadership"
+
 import type { Metadata } from "next"
+import AboutPageClient from "./AboutPageClient"
 
 export const metadata: Metadata = {
   title: "SMP Labschool Jakarta - Tentang Kami",
@@ -30,12 +28,5 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
-  return (
-    <div className="pt-16">
-      <AboutHero />
-      <VisionMission />
-      <History />
-      <Leadership />
-    </div>
-  )
+  return <AboutPageClient />
 }

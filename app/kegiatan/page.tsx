@@ -1,7 +1,5 @@
-import ActivitiesHero from "@/components/activities/ActivitiesHero"
-import ActivitiesTimeline from "@/components/activities/ActivitiesTimeline"
-import UpcomingActivities from "@/components/activities/UpcomingActivities"
 import type { Metadata } from "next"
+import ActivitiesPageClient from "./ActivitiesPageClient"
 
 export const metadata: Metadata = {
   title: "SMP Labschool Jakarta - Kegiatan",
@@ -28,11 +26,5 @@ export const metadata: Metadata = {
 }
 
 export default function ActivitiesPage() {
-  return (
-    <div className="pt-16">
-      <ActivitiesHero />
-      <ActivitiesTimeline />
-      <UpcomingActivities />
-    </div>
-  )
+  return <ActivitiesPageClient />
 }
