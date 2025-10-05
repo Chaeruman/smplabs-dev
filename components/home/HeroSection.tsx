@@ -10,7 +10,7 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: "/banner-labschool.jpg",
+      image: "/IMG_2427.jpg",
       title: "SMP Labschool Jakarta",
       subtitle: "Labsraw - Sekolah Menengah Pertama Terbaik di Jakarta",
       description:
@@ -19,7 +19,7 @@ const HeroSection = () => {
       link: "/tentang",
     },
     {
-      image: "/kegiatan-sekolah.jpg",
+      image: "/kegiatan-pm.jpg",
       title: "Prestasi Akademik & Non-Akademik",
       subtitle: "SMP Jakarta Terdepan dengan Segudang Prestasi",
       description: "Siswa SMP Labschool Jakarta meraih berbagai juara di tingkat regional, nasional, dan internasional",
@@ -27,7 +27,7 @@ const HeroSection = () => {
       link: "/kegiatan",
     },
     {
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/fasilitas-kantin.jpg",
       title: "Fasilitas Modern di Labschool",
       subtitle: "Lingkungan Belajar Terbaik untuk Masa Depan Cerah",
       description: "Fasilitas lengkap dan modern mendukung proses pembelajaran yang efektif dan menyenangkan",

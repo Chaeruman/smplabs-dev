@@ -30,7 +30,7 @@ const ContactHero = () => {
             >
               <Phone className="h-8 w-8 mx-auto mb-2 text-green-300 group-hover:text-green-200 transition-colors" />
               <p className="text-sm font-medium">Telepon</p>
-              <p className="text-xs text-blue-100">(021) 7694-5460</p>
+              <p className="text-xs text-blue-100">(021) 4786-0038</p>
             </a>
 
             <a
@@ -43,14 +43,14 @@ const ContactHero = () => {
             </a>
 
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/6285282759508"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-white/10 backdrop-blur-md rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105"
             >
               <MessageCircle className="h-8 w-8 mx-auto mb-2 text-green-300 group-hover:text-green-200 transition-colors" />
               <p className="text-sm font-medium">WhatsApp</p>
-              <p className="text-xs text-blue-100">+62 812-3456-7890</p>
+              <p className="text-xs text-blue-100">+62-852-8275-9508</p>
             </a>
 
             <div className="group bg-white/10 backdrop-blur-md rounded-xl p-4 hover:bg-white/20 transition-all duration-300 hover:scale-105">

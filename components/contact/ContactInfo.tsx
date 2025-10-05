@@ -7,8 +7,8 @@ const ContactInfo = () => {
     {
       icon: Phone,
       title: "Telepon",
-      info: "(021) 7694-5460",
-      link: "tel:+622176945460",
+      info: "(021) 4786-0038",
+      link: "tel:+622147860038",
       color: "from-green-400 to-emerald-500",
       bgColor: "from-green-50 to-emerald-50",
     },
@@ -23,8 +23,8 @@ const ContactInfo = () => {
     {
       icon: MessageCircle,
       title: "WhatsApp Hotline",
-      info: "+62 812-3456-7890",
-      link: "https://wa.me/6281234567890",
+      info: "0852-8275-9508",
+      link: "https://wa.me/6285282759508",
       color: "from-green-400 to-green-500",
       bgColor: "from-green-50 to-green-50",
     },
