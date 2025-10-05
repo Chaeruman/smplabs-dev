@@ -37,6 +37,7 @@ const Header = () => {
     { href: "/galeri", label: "Galeri" },
     { href: "/kegiatan", label: "Kegiatan" },
     { href: "/ekstrakurikuler", label: "Ekstrakurikuler" },
+    { href: "/spp", label: "SPP"},
     { href: "/kontak", label: "Kontak" },
   ]
 
