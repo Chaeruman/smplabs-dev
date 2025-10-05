@@ -205,7 +205,7 @@ export default function ExtracurricularCategories() {
                         {/* Image */}
                         <div className="relative h-48 sm:h-56 overflow-hidden">
                           <Image
-                            src="/placeholder.svg?height=300&width=400"
+                            src={activity.cover || "/placeholder.svg?height=300&width=400"}
                             alt={activity.name}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -223,10 +223,16 @@ export default function ExtracurricularCategories() {
 
                         {/* Content */}
                         <div className="p-6">
-                          {/* <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
-                            {details.main ||
-                              `Kegiatan ${activity.name} yang menarik dan bermanfaat untuk pengembangan diri siswa.`}
-                          </p> */}
+                          {/* Benefits Preview */}
+                          {activity.benefit && (
+                            <div className="mb-4">
+                              <div className="text-sm text-gray-600 line-clamp-3">
+                                <div className="html-content" dangerouslySetInnerHTML={{ 
+                                  __html: activity.benefit.replace(/<[^>]*>/g, '').substring(0, 150) + '...' 
+                                }} />
+                              </div>
+                            </div>
+                          )}
 
                           {/* Details */}
                           <div className="space-y-3 mb-6">

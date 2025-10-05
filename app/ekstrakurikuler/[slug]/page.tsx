@@ -179,7 +179,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
               <div className="relative">
                 <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src={foundActivity.cover || "/placeholder.svg?height=400&width=600"}
                     alt={foundActivity.name}
                     fill
                     className="object-cover"
@@ -201,38 +201,48 @@ export default async function ActivityDetailPage({ params }: PageProps) {
                 <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
                   <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Tentang Kegiatan</h2>
                   <div className="prose prose-lg max-w-none text-gray-600">
-                    <p className="text-lg leading-relaxed mb-6">
-                      {details.main ||
-                        `${foundActivity.name} adalah salah satu kegiatan ekstrakurikuler unggulan di SMP Labschool Jakarta yang dirancang untuk mengembangkan bakat dan minat siswa.`}
-                    </p>
-                    <p className="leading-relaxed">
-                      Kegiatan ini memberikan kesempatan kepada siswa untuk mengeksplorasi kemampuan mereka dalam bidang{" "}
-                      {foundCategory.title.toLowerCase()}
-                      melalui berbagai aktivitas yang menarik dan edukatif. Dengan bimbingan dari pembina yang
-                      berpengalaman, siswa akan mendapatkan pengalaman berharga yang dapat mengembangkan karakter dan
-                      soft skills mereka.
-                    </p>
+                    {foundActivity.about ? (
+                      <div className="html-content" dangerouslySetInnerHTML={{ __html: foundActivity.about }} />
+                    ) : (
+                      <>
+                        <p className="text-lg leading-relaxed mb-6">
+                          {details.main ||
+                            `${foundActivity.name} adalah salah satu kegiatan ekstrakurikuler unggulan di SMP Labschool Jakarta yang dirancang untuk mengembangkan bakat dan minat siswa.`}
+                        </p>
+                        <p className="leading-relaxed">
+                          Kegiatan ini memberikan kesempatan kepada siswa untuk mengeksplorasi kemampuan mereka dalam bidang{" "}
+                          {foundCategory.title.toLowerCase()}
+                          melalui berbagai aktivitas yang menarik dan edukatif. Dengan bimbingan dari pembina yang
+                          berpengalaman, siswa akan mendapatkan pengalaman berharga yang dapat mengembangkan karakter dan
+                          soft skills mereka.
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
 
                 {/* Benefits Section */}
                 <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
                   <h3 className="text-2xl font-bold text-gray-800 mb-6">Manfaat Bergabung</h3>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    {[
-                      "Mengembangkan bakat dan minat",
-                      "Meningkatkan kepercayaan diri",
-                      "Membangun kerjasama tim",
-                      "Mengasah kreativitas",
-                      "Menambah pengalaman organisasi",
-                      "Memperluas jaringan pertemanan",
-                    ].map((benefit, index) => (
-                      <div key={index} className="flex items-center">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                        <span className="text-gray-700">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
+                  {foundActivity.benefit ? (
+                    <div className="html-content" dangerouslySetInnerHTML={{ __html: foundActivity.benefit }} />
+                  ) : (
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {[
+                        "Mengembangkan bakat dan minat",
+                        "Meningkatkan kepercayaan diri",
+                        "Membangun kerjasama tim",
+                        "Mengasah kreativitas",
+                        "Menambah pengalaman organisasi",
+                        "Memperluas jaringan pertemanan",
+                      ].map((benefit, index) => (
+                        <div key={index} className="flex items-center">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
+                          <span className="text-gray-700">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 

@@ -1,0 +1,266 @@
+[
+  {
+    "icon": "BookOpen",
+    "title": "Akademik",
+    "color": "from-green-400 to-emerald-500",
+    "bgColor": "from-green-50 to-emerald-50",
+    "activities": [
+      {
+        "name": "Layanan Pendidikan Kepramukaan (Soft Skill / Life Skill)",
+        "description": "Ekstrakurikuler Pramuka",
+        "participants": "2187 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Paskibra",
+        "description": "Guru Pembina : Siti Innayatu Sholiha, S.Pd.\r\nTempat : Lapangan Labschool \r\nWaktu : Senin, 15.30 - 17.00 WIB",
+        "participants": "122 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Jurnalistik",
+        "description": "Guru Pembina : Ramli Jainal Muttaqin, S.Pd.\r\nTempat : Kelas VII E\r\nWaktu : Selasa. 15.30 - 17.00 WIB",
+        "participants": "72 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "BT2Q",
+        "description": "Guru Pembina : Tina Septiarini, S.Pd.\r\nTempat : Kelas VII D\r\nWaktu : Selasa, 15.30 - 16.30 WIB",
+        "participants": "69 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "English Club",
+        "description": "Guru Pembina : Purwanti, S.Pd.\r\nTempat : Kelas VIII D\r\nWaktu : Selasa, 15.30 - 17.00 WIB",
+        "participants": "116 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Acolabs/komik",
+        "description": "Guru Pembina : Dra. Lita lestari\r\nTempat : Kelas VII E\r\nWaktu : Kamis, 15.30 -  17.00 WIB",
+        "participants": "121 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Bahasa Jepang",
+        "description": "Guru Pembina : Eni Nurani tartila, S.Pd.\r\nTempat : Kelas VII A\r\nWaktu : Jumat, 13.00 - 14.30 WIB",
+        "participants": "150 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "KIR",
+        "description": "Guru Pembina : Dra. Khoirun Nisa P. dan Aura Risna, S.Pd.\r\nTempat : Lab. Fisika\r\nWaktu :  Jumat, 13.00 - 15.00 WIB\r\n",
+        "participants": "107 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Pramuka",
+        "description": "Guru Pembina : Amidi Ulani, S.Pd. dan Siti Innayatu Sholiha, S.Pd.\r\nTempat  : Hallma\r\nWaktu : Kamis, 15.30 - 17.00 WIB",
+        "participants": "71 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      }
+    ]
+  },
+  {
+    "icon": "Trophy",
+    "title": "Olahraga",
+    "color": "from-blue-400 to-cyan-500",
+    "bgColor": "from-blue-50 to-cyan-50",
+    "activities": [
+      {
+        "name": "Taekwondo",
+        "description": "Guru Pembina : Yusuf Sidarto, M.Pd.\r\nTempat : Lobby  SMP\r\nWaktu : Senin, 15.30 - 17.00 WIB",
+        "participants": "79 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Menembak",
+        "description": "Guru Pembina : Fardiah Musni, S.Pd. dan Dra. siti Johariyah\r\nTempat : Teater Kecil\r\nWaktu : Selasa, 15.30 - 17.00 WIB",
+        "participants": "198 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Panahan",
+        "description": "Guru Pembina : Humaedi, S.Pd.\r\nTempat : Teater Kecil\r\nWaktu : Rabu, 15.30 - 17.00 WIB",
+        "participants": "99 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Bola Basket",
+        "description": "Guru Pembina : Diono Yudyarianto, S.Pd. dan Sukarman, M.Pd.\r\nTempat : Hall Labschool \r\nWaktu : \r\nKamis, 16.00 - 18.00 WIB  (Putri Reguler)\r\nJumat, 14.00 - 16.00 WIB (Putra Reguler)\r\nSabtu, 09.00 - 11.00 WIB (Team)",
+        "participants": "364 siswa",
+        "benefit": "<ul><li><strong>Meningkatkan kebugaran fisik</strong> dan daya tahan tubuh</li><li><strong>Mengembangkan koordinasi</strong> mata, tangan, dan kaki</li><li><strong>Membangun kerja sama tim</strong> dan komunikasi</li><li><strong>Meningkatkan konsentrasi</strong> dan strategi berpikir</li><li><strong>Mengasah leadership</strong> dan kepemimpinan</li></ul>",
+        "cover": null,
+        "about": "<h3>Ekstrakurikuler Bola Basket</h3><p>Ekstrakurikuler bola basket di SMP Labschool Jakarta memberikan kesempatan kepada siswa untuk mengembangkan keterampilan olahraga basket yang komprehensif. Kegiatan ini tidak hanya fokus pada aspek teknis permainan, tetapi juga mengembangkan karakter dan nilai-nilai positif.</p><h4>Program Latihan:</h4><ul><li>Latihan dasar teknik basket</li><li>Strategi permainan tim</li><li>Kondisi fisik dan stamina</li><li>Mental training dan konsentrasi</li></ul><p>Dengan pembina yang berpengalaman, siswa akan mendapatkan pelatihan yang terstruktur dan menyenangkan.</p>"
+      },
+      {
+        "name": "Futsal",
+        "description": "Guru Pembina : Erwin Marwiansyah, M.Pd. dan Rizqi Taufik Hidayat, S.P:d.\r\nTempat : Lapangan Labschool \r\nWaktu : Jumat, 13.30 - 15.30 WIB (Reguler)\r\nSabtu, 07.00 - 09.00 WIB (Team)",
+        "participants": "326 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Bulutangkis",
+        "description": "Guru Pembina : Amidi Ulani, S.Pd. & Hilmi Khoirulloh, S.Pd.\r\nTempat : Hall Labschool \r\nWaktu : 07.00 - 09.00 WIB",
+        "participants": "196 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Pencak Silat",
+        "description": "Guru Pembina : Mazlan, S.Pd.\r\nTempat : Lobby SMP\r\nWaktu : Rabu, 15.30 - 16.30 WIB",
+        "participants": "35 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      }
+    ]
+  },
+  {
+    "icon": "Camera",
+    "title": "Teknologi & Media",
+    "color": "from-purple-400 to-violet-500",
+    "bgColor": "from-purple-50 to-violet-50",
+    "activities": [
+      {
+        "name": "Fotografi",
+        "description": "Guru Pembina : Murdha Nugraha, S.Pd. \r\nTempat : Kelas VIII E\r\nWaktu : Selasa, 15.30 - 17.00 WIB\r\n            ",
+        "participants": "52 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Esport Mobile Legend",
+        "description": "Guru Pembina : Kevin Archie Luciano dan Abdul Fathir faruqi, S.Pd.\r\nTempat : Kelas VIII G\r\nWaktu : Rabu, 15.30 - 17.00 WIB",
+        "participants": "132 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Robotik",
+        "description": "Guru Pembina : Drs. Warisno\r\nTempat : Kelas VII C\r\nWaktu : Jumat, 13.00 - 14.00 WIB",
+        "participants": "75 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Komputer",
+        "description": "Guru Pembina : Dr. Wijaya Kusumah, M.Pd. \r\nTempat : Lab. Komputer\r\nWaktu : Jumat, 13.00 - 15.00 WIB\r\n",
+        "participants": "88 siswa",
+        "benefit": "<ul><li><strong>Mengembangkan bakat dan minat</strong> siswa di bidang teknologi dan pemrograman.</li><li><strong>Meningkatkan kepercayaan diri</strong> melalui pencapaian dalam menyelesaikan tantangan coding.</li><li><strong>Membangun kerjasama tim</strong> lewat proyek kelompok dan kolaborasi ide.</li><li><strong>Mengasah kreativitas</strong> dengan menciptakan solusi dan inovasi melalui coding.</li><li><strong>Menambah pengalaman organisasi</strong> melalui keterlibatan dalam kegiatan terstruktur.</li><li><strong>Memperluas jaringan pertemanan</strong> dengan siswa lain yang memiliki minat serupa.</li></ul>",
+        "cover": "https://storage.googleapis.com/satupemuda/ekskul/1759688092_komputer.jpg?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=satupemuda-compute-account%40optimum-plexus-378901.iam.gserviceaccount.com%2F20251005%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20251005T181520Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=05314efb99cab75cd8626c8ba52212799baca776c10f2a451a0e6a94a30daf6e617065605a96143b821e4e7982ee1f62d9d6bfa82045ab18fc3828682a6bbd6bc3b0e41d5955316c81345019e72bb2d7a646669cbdcfdec8b1436a06464b174f3d750fc9f0ee96cdfc03f343f667e481b4bc6f8ea633cc53efc4eb228d3a27c20fa105b91feeee0acd7f549ac7dad1d6d3fc3eeb1b983dc2abc2e890099f92f696fc234834551434bc89bb9e278811f3bd5493add5a0204c3315d423fcc8e2f4792a70c253d79914050292d668c09cb3d875f73498ca1a03b9fdd4d3d31cbc058698fa85b3053caf917c5c67a9be52eed229673434af875da54c95aca4d44a9c",
+        "about": "<h3>Kegiatan Ekstrakurikuler Komputer</h3><p>Kegiatan ini memberikan kesempatan kepada siswa untuk mengenal dan mendalami dunia pemrograman melalui cara yang interaktif dan menyenangkan. Dengan bimbingan pelatih yang berpengalaman di bidang programming, siswa akan belajar dasar-dasar coding, melatih logika berpikir, serta menyelesaikan tantangan-tantangan kreatif yang seru.</p><p>Melalui kegiatan ini, siswa tidak hanya mengasah keterampilan teknologi, tetapi juga mengembangkan kemampuan problem solving, kerja sama, dan kreativitas yang bermanfaat untuk masa depan mereka.</p><h4>Materi Pembelajaran:</h4><ul><li>Dasar-dasar pemrograman</li><li>Algoritma dan logika</li><li>Pengembangan aplikasi sederhana</li><li>Kolaborasi dalam proyek tim</li></ul>"
+      }
+    ]
+  },
+  {
+    "icon": "Music",
+    "title": "Seni & Musik",
+    "color": "from-pink-400 to-rose-500",
+    "bgColor": "from-pink-50 to-rose-50",
+    "activities": [
+      {
+        "name": "Gambang Kromong",
+        "description": "Guru Pembina : Dyah Wysnuningrum, M.Pd.\r\nTempat : Digital Lounge\r\nWaktu : Rabu, 15.30 - 17.00 WIB",
+        "participants": "128 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Band",
+        "description": "Guru Pembina : Agung Hartono, S.Pd.\r\nTempat : Studio Musik\r\nWaktu : Selasa, 15.30 - 17.00 WIB",
+        "participants": "132 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Ratoh Jaroe",
+        "description": "Guru Pembina : Dra. Titin Setiawati dan Sherly Alifiana, S.Pd. \r\nTempat : Hallma \r\nWaktu : Jumat, 13.00 - 14.00 WIB",
+        "participants": "238 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Teater",
+        "description": "Guru Pembina : Ali Topan, S.Pd. \r\nTempat : Teater TK\r\nWaktu : Jumat, 13.00 - 15.00 WIB",
+        "participants": "229 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Paduan Suara",
+        "description": "Guru Pembina : Alpiah Pijri, M.Pd. dan Tiara Erviana, S.Pd.\r\nTempat : R. Seni Musik\r\nWaktu : Jumat,13.00 - 14.00 WIB",
+        "participants": "77 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Seni Tari Tradisional  dan Modern Dance",
+        "description": "Guru Pembina : Siti Mujanah, M.Pd. dan Mifta Putri Apriyani, S.Pd.\r\n\r\nTempat : Teater Kecil\r\nWaktu : Jumat, 13.00 - 15.00 WIB",
+        "participants": "191 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      }
+    ]
+  },
+  {
+    "icon": "Star",
+    "title": "Lainnya",
+    "color": "from-gray-400 to-gray-600",
+    "bgColor": "from-gray-50 to-slate-50",
+    "activities": [
+      {
+        "name": "Palang Merah Remaja (PMR)",
+        "description": "Guru Pembina: Ropingah, S.Pd. dan Firdias Astia Safitri, S.P:d.\r\nTempat: Kelas VII C\r\nWaktu: Senin, 15.30-17.00",
+        "participants": "13 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      },
+      {
+        "name": "Native Speaker",
+        "description": "Pembina: -",
+        "participants": "219 siswa",
+        "benefit": null,
+        "cover": null,
+        "about": null
+      }
+    ]
+  }
+]

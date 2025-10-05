@@ -2,6 +2,9 @@ export interface ExtracurricularActivity {
   name: string
   description: string
   participants: string
+  benefit?: string | null
+  cover?: string | null
+  about?: string | null
 }
 
 export interface ExtracurricularCategory {

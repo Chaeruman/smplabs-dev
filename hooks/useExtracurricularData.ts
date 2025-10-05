@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import type { ExtracurricularCategory } from "@/types/extracurricular"
+import { fetchExtracurricularData } from "@/lib/extracurricular-api"
 
 interface UseExtracurricularDataReturn {
   data: ExtracurricularCategory[]
@@ -20,24 +21,13 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
         setLoading(true)
         setError(null)
 
-        const response = await fetch("/api/extracurricular")
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        const result = await response.json()
-
-        if (!Array.isArray(result)) {
-          throw new Error("Invalid data format received from API")
-        }
-
+        const result = await fetchExtracurricularData()
         setData(result)
       } catch (err) {
         console.error("Error fetching extracurricular data:", err)
         setError(err instanceof Error ? err.message : "An unknown error occurred")
 
-        // Set fallback data on error
+        // Set minimal fallback data on error
         setData([
           {
             title: "Teknologi & Media",
@@ -49,11 +39,17 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
                 name: "Fotografi",
                 description: "Belajar teknik fotografi dan editing foto",
                 participants: "20 siswa aktif",
+                benefit: null,
+                cover: null,
+                about: null,
               },
               {
                 name: "Desain Grafis",
                 description: "Belajar desain grafis dan multimedia",
                 participants: "24 siswa aktif",
+                benefit: null,
+                cover: null,
+                about: null,
               },
             ],
           },
