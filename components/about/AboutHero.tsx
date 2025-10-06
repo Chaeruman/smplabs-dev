@@ -125,7 +125,7 @@ const AboutHero = () => {
             <div className="relative group">
               <div className="relative h-64 sm:h-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl hover-glow transition-all duration-500 group-hover:shadow-3xl group-hover:scale-105">
                 <Image
-                  src="/kegiatan-sekolah.jpg"
+                  src="/IMG_2427.jpg"
                   alt="Kegiatan Sekolah SMP Labschool Jakarta"
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -140,13 +140,13 @@ const AboutHero = () => {
               <div className="absolute -top-4 -left-4 bg-white rounded-xl p-3 shadow-lg transition-all duration-500 hover:scale-110 hover:shadow-xl animate-float">
                 <div className="text-xs font-semibold text-blue-600 flex items-center gap-1">
                   <Sparkles className="h-3 w-3" />
-                  Kegiatan Aktif
+                  Pemuda Juara
                 </div>
               </div>
               <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-3 shadow-lg transition-all duration-500 hover:scale-110 hover:shadow-xl animate-float-delayed">
                 <div className="text-xs font-semibold text-green-600 flex items-center gap-1">
                   <Star className="h-3 w-3" />
-                  Pembelajaran Outdoor
+                  Kegiatan Aktif
                 </div>
               </div>
               
