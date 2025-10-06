@@ -4,6 +4,9 @@ import { ArrowLeft, Users, Clock, MapPin, Award } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 
+// Enable static generation with revalidation
+export const revalidate = 3600 // Revalidate every hour
+
 // Utility function to generate consistent slugs
 function generateSlug(name: string): string {
   return name

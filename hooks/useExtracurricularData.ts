@@ -23,11 +23,15 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
 
         const result = await fetchExtracurricularData()
         setData(result)
+        console.log("Successfully loaded extracurricular data:", result.length, "categories")
       } catch (err) {
         console.error("Error fetching extracurricular data:", err)
-        setError(err instanceof Error ? err.message : "An unknown error occurred")
+        const errorMessage = err instanceof Error ? err.message : "An unknown error occurred"
+        setError(errorMessage)
 
-        // Set minimal fallback data on error
+        // The fetchExtracurricularData function now always returns fallback data
+        // So this catch block should rarely be reached, but we'll keep it as a safety net
+        console.log("Using emergency fallback data in hook")
         setData([
           {
             title: "Teknologi & Media",

@@ -130,15 +130,15 @@ const StatsSection = () => {
     <section ref={sectionRef} className="section-padding bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
       <div className="container-custom">
         <div
-          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Prestasi & Pencapaian</h2>
-          <p className="text-blue-200 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">Prestasi & Pencapaian</h2>
+          <p className="text-blue-200 max-w-2xl mx-auto text-sm sm:text-base">
             Angka-angka yang menunjukkan komitmen kami dalam memberikan pendidikan terbaik
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {stats.map((stat, index) => (
             <div
               key={index}
@@ -147,14 +147,14 @@ const StatsSection = () => {
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <div className={`inline-flex items-center justify-center w-16 h-16 ${stat.color} rounded-full mb-4`}>
-                <stat.icon className="h-8 w-8 text-white" />
+              <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 ${stat.color} rounded-full mb-3 sm:mb-4`}>
+                <stat.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
               </div>
-              <div className="text-4xl font-bold text-white mb-2">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1 sm:mb-2">
                 {stat.count}
                 {stat.suffix}
               </div>
-              <div className="text-blue-200">{stat.label}</div>
+              <div className="text-blue-200 text-xs sm:text-sm">{stat.label}</div>
             </div>
           ))}
         </div>

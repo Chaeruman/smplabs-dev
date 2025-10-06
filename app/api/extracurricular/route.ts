@@ -26,7 +26,7 @@ export async function GET() {
         "User-Agent": "SMP-Labschool-Website/1.0",
       },
       signal: controller.signal,
-      cache: "no-store",
+      next: { revalidate: 3600 }, // Cache for 1 hour
     })
 
     clearTimeout(timeoutId)

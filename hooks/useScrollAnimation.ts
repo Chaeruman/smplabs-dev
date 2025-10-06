@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface UseScrollAnimationOptions {
   threshold?: number
@@ -8,16 +8,10 @@ interface UseScrollAnimationOptions {
   triggerOnce?: boolean
 }
 
-export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
-  const {
-    threshold = 0.1,
-    rootMargin = "0px",
-    triggerOnce = true
-  } = options
-
+export function useScrollAnimation<T extends HTMLElement = HTMLElement>(options: UseScrollAnimationOptions = {}) {
+  const { threshold = 0.1, rootMargin = "0px", triggerOnce = true } = options
   const [isVisible, setIsVisible] = useState(false)
-  const [hasTriggered, setHasTriggered] = useState(false)
-  const elementRef = useRef<HTMLElement>(null)
+  const ref = useRef<T>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,41 +19,61 @@ export const useScrollAnimation = (options: UseScrollAnimationOptions = {}) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
           if (triggerOnce) {
-            setHasTriggered(true)
+            observer.unobserve(entry.target)
           }
-          
-          // Add visible class to animate-on-scroll elements
-          const animatedElements = entry.target.querySelectorAll('.animate-on-scroll')
-          animatedElements.forEach((el, index) => {
-            setTimeout(() => {
-              el.classList.add('visible')
-            }, index * 150)
-          })
         } else if (!triggerOnce) {
           setIsVisible(false)
         }
       },
       {
         threshold,
-        rootMargin
+        rootMargin,
       }
     )
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current)
+    if (ref.current) {
+      observer.observe(ref.current)
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current)
+      if (ref.current) {
+        observer.unobserve(ref.current)
       }
     }
   }, [threshold, rootMargin, triggerOnce])
 
-  return {
-    elementRef,
-    isVisible: triggerOnce ? (isVisible || hasTriggered) : isVisible
-  }
+  return { ref, isVisible }
 }
 
-export default useScrollAnimation
+export function useCounterAnimation(end: number, duration: number = 2000, isVisible: boolean = true) {
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!isVisible) return
+
+    let startTime: number
+    let animationFrame: number
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime
+      const progress = Math.min((currentTime - startTime) / duration, 1)
+      
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+      setCount(Math.floor(easeOutQuart * end))
+
+      if (progress < 1) {
+        animationFrame = requestAnimationFrame(animate)
+      }
+    }
+
+    animationFrame = requestAnimationFrame(animate)
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame)
+      }
+    }
+  }, [end, duration, isVisible])
+
+  return count
+}

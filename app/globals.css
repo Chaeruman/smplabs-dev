@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom responsive breakpoints */
+@media (min-width: 475px) {
+  .xs\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+  .xs\:text-xs { font-size: 0.75rem; line-height: 1rem; }
+  .xs\:w-8 { width: 2rem; }
+  .xs\:h-8 { height: 2rem; }
+  .xs\:h-3 { height: 0.75rem; }
+  .xs\:w-3 { width: 0.75rem; }
+  .xs\:inline { display: inline; }
+  .xs\:hidden { display: none; }
+}
+
 :root {
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
@@ -95,15 +107,123 @@ body {
 /* Custom utility classes */
 @layer utilities {
   .section-padding {
-    @apply py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8;
+    @apply py-6 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6 lg:px-8;
   }
 
   .container-custom {
     @apply max-w-7xl mx-auto;
   }
 
+  /* Mobile-first spacing utilities */
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .mobile-margin {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+
+  /* Mobile-first typography */
+  .mobile-heading {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  .mobile-subheading {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .mobile-body {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  .mobile-caption {
+    @apply text-xs sm:text-sm;
+  }
+
   .btn-primary {
     @apply bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 hover:shadow-lg;
+  }
+
+  /* Mobile-first button utilities */
+  .btn-mobile {
+    @apply px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-base font-semibold rounded-lg transition-all duration-300;
+  }
+
+  .btn-mobile-sm {
+    @apply px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium rounded-md transition-all duration-300;
+  }
+
+  .btn-mobile-lg {
+    @apply px-6 sm:px-8 py-4 sm:py-5 text-base sm:text-lg font-semibold rounded-lg transition-all duration-300;
+  }
+
+  /* Mobile-first grid utilities */
+  .grid-mobile {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .grid-mobile-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6;
+  }
+
+  .grid-mobile-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+  }
+
+  .grid-mobile-4 {
+    @apply grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6;
+  }
+
+  /* Mobile-first spacing utilities */
+  .space-mobile {
+    @apply space-y-4 sm:space-y-6 lg:space-y-8;
+  }
+
+  .space-mobile-x {
+    @apply space-x-4 sm:space-x-6 lg:space-x-8;
+  }
+
+  .space-mobile-y {
+    @apply space-y-4 sm:space-y-6 lg:space-y-8;
+  }
+
+  /* Mobile-first margin utilities */
+  .margin-mobile {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+
+  .margin-mobile-x {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+
+  .margin-mobile-y {
+    @apply my-4 sm:my-6 lg:my-8;
+  }
+
+  /* Mobile-first padding utilities */
+  .padding-mobile {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  .padding-mobile-x {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .padding-mobile-y {
+    @apply py-4 sm:py-6 lg:py-8;
+  }
+
+  /* Mobile-first card utilities */
+  .card-mobile {
+    @apply rounded-lg sm:rounded-xl shadow-md sm:shadow-lg p-4 sm:p-6;
+  }
+
+  .card-mobile-sm {
+    @apply rounded-md sm:rounded-lg shadow-sm sm:shadow-md p-3 sm:p-4;
+  }
+
+  .card-mobile-lg {
+    @apply rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl p-6 sm:p-8;
   }
 
   .card-soft-blue {

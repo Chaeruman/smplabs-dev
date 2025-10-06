@@ -104,11 +104,11 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         <div className="max-w-4xl mx-auto">
           {/* Main Content */}
-          <div className={`mb-8 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className={`text-4xl md:text-6xl font-bold mb-4 leading-tight text-high-contrast ${
+          <div className={`mb-6 sm:mb-8 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 leading-tight text-high-contrast ${
               isLoaded ? 'fade-in' : 'opacity-0'
             }`}>
               <TypewriterText 
@@ -123,12 +123,12 @@ const HeroSection = () => {
                 pauseTime={2000}
               />
             </h1>
-            <h2 className={`text-xl md:text-2xl font-semibold mb-6 text-high-contrast-sm ${
+            <h2 className={`text-base sm:text-lg md:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 text-high-contrast-sm ${
               isLoaded ? 'fade-in-delay-1' : 'opacity-0'
             }`}>
               {slides[currentSlide].subtitle}
             </h2>
-            <p className={`text-lg md:text-xl mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-soft ${
+            <p className={`text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-soft ${
               isLoaded ? 'fade-in-delay-2' : 'opacity-0'
             }`}>
               {slides[currentSlide].description}
@@ -136,37 +136,37 @@ const HeroSection = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-4 justify-center mb-12 ${
+          <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 ${
             isLoaded ? 'fade-in-delay-3' : 'opacity-0'
           }`}>
             <Link
               href={slides[currentSlide].link}
-              className="btn-primary text-lg px-8 py-4 inline-flex items-center justify-center btn-animate hover:scale-105 transition-all duration-300"
+              className="btn-primary text-sm sm:text-base md:text-lg px-6 sm:px-8 py-3 sm:py-4 inline-flex items-center justify-center btn-animate hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
-              <Play className="mr-2 h-5 w-5" />
+              <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               {slides[currentSlide].cta}
             </Link>
             <Link
               href="https://satupemuda.smplabschooljakarta.sch.id/"
-              className="btn-secondary text-lg px-8 py-4 inline-flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300"
+              className="btn-secondary text-sm sm:text-base md:text-lg px-6 sm:px-8 py-3 sm:py-4 inline-flex items-center justify-center bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/20 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
             >
               Satu Pemuda
             </Link>
           </div>
 
           {/* Stats */}
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 max-w-2xl mx-auto ${
+          <div className={`grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-2xl mx-auto ${
             isLoaded ? 'fade-in-delay-3' : 'opacity-0'
           }`}>
             {stats.map((stat, index) => (
               <div key={index} className={`text-center float ${index === 1 ? 'float-delay-1' : index === 2 ? 'float-delay-2' : ''}`}>
-                <div className="flex justify-center mb-3">
-                  <div className="p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110">
-                    <stat.icon className={`h-8 w-8 ${stat.color}`} />
+                <div className="flex justify-center mb-2 sm:mb-3">
+                  <div className="p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110">
+                    <stat.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${stat.color}`} />
                   </div>
                 </div>
-                <div className="text-3xl font-bold mb-1 pulse-glow">{stat.number}</div>
-                <div className="text-blue-200">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl font-bold mb-1 pulse-glow">{stat.number}</div>
+                <div className="text-blue-200 text-sm sm:text-base">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -176,32 +176,32 @@ const HeroSection = () => {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className={`absolute left-4 top-1/2 transform -translate-y-1/2 z-20 p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 ${
+        className={`absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 ${
           isLoaded ? 'fade-in' : 'opacity-0'
         }`}
         aria-label="Previous slide"
       >
-        <ChevronLeft className="h-6 w-6 text-white" />
+        <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
       </button>
       <button
         onClick={nextSlide}
-        className={`absolute right-4 top-1/2 transform -translate-y-1/2 z-20 p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 ${
+        className={`absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 p-2 sm:p-3 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 ${
           isLoaded ? 'fade-in' : 'opacity-0'
         }`}
         aria-label="Next slide"
       >
-        <ChevronRight className="h-6 w-6 text-white" />
+        <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
       </button>
 
       {/* Slide Indicators */}
-      <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 ${
+      <div className={`absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2 ${
         isLoaded ? 'fade-in-delay-3' : 'opacity-0'
       }`}>
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 hover:scale-125 ${
               index === currentSlide 
                 ? "bg-white shadow-lg" 
                 : "bg-white/50 hover:bg-white/70"

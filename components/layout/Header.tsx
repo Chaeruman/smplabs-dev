@@ -3,16 +3,18 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ChevronDown } from "lucide-react"
-import { useRouter } from "next/navigation"
+import { Menu, X, ChevronDown, Sparkles } from "lucide-react"
+import { useRouter, usePathname } from "next/navigation"
 import { DarkModeToggle } from "@/components/theme/DarkModeToggle"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false)
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,54 +85,94 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? "bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg shadow-blue-100/50 dark:shadow-gray-900/50" 
-          : "bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm"
+          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow-2xl shadow-blue-100/20 dark:shadow-gray-900/30 border-b border-white/20 dark:border-gray-700/30" 
+          : "bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg shadow-lg shadow-blue-100/10 dark:shadow-gray-900/20"
       }`}
     >
       <nav className="container-custom">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <Image
-              src="/logo-smp-labschool.png"
-              alt="SMP Labschool Jakarta"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-            <div className="flex flex-col">
-              <span className="font-bold text-blue-600 dark:text-blue-400 text-lg">SMP Labschool</span>
-              <span className="text-xs text-gray-600 dark:text-gray-400">Jakarta</span>
+          <Link 
+            href="/" 
+            className="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 hover:scale-105 transition-all duration-300 ease-out min-w-0 flex-shrink-0"
+            onMouseEnter={() => setHoveredItem('logo')}
+            onMouseLeave={() => setHoveredItem(null)}
+          >
+            <div className="relative flex-shrink-0">
+              <Image
+                src="/logo-smp-labschool.png"
+                alt="SMP Labschool Jakarta"
+                width={28}
+                height={28}
+                className="rounded-full w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 transition-all duration-300 group-hover:rotate-12 group-hover:shadow-lg group-hover:shadow-blue-200/50 dark:group-hover:shadow-blue-400/30"
+              />
+              {hoveredItem === 'logo' && (
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 animate-pulse"></div>
+              )}
+            </div>
+            <div className="flex flex-col min-w-0 flex-1">
+              <span className="font-bold text-blue-600 dark:text-blue-400 text-xs xs:text-sm sm:text-base md:text-lg transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-blue-300 leading-tight">
+                <span className="hidden xs:inline">SMP </span>
+                <span className="xs:hidden">SMP</span>
+                <span className="block xs:inline">Labschool</span>
+                {hoveredItem === 'logo' && (
+                  <Sparkles className="inline-block ml-1 h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-yellow-500 animate-pulse" />
+                )}
+              </span>
+              <span className="text-[10px] xs:text-xs text-gray-600 dark:text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300 leading-tight">
+                Jakarta
+              </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <div key={item.href} className="relative group">
-                {item.hasDropdown ? (
-                  <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <div className="flex items-center space-x-1 text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors duration-200 cursor-pointer py-2">
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        className={`h-4 w-4 transition-transform duration-200 ${isAboutDropdownOpen ? "rotate-180" : ""}`}
-                      />
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
-                    </div>
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            {navItems.map((item) => {
+              const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+              return (
+                <div key={item.href} className="relative group">
+                  {item.hasDropdown ? (
+                    <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                      <div 
+                        className={`flex items-center space-x-1 font-medium transition-all duration-300 cursor-pointer py-2 text-sm lg:text-base relative group-hover:scale-105 ${
+                          isActive 
+                            ? "text-blue-600 dark:text-blue-400" 
+                            : "text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                        }`}
+                        onMouseEnter={() => setHoveredItem(item.href)}
+                        onMouseLeave={() => setHoveredItem(null)}
+                      >
+                        <span className="relative z-10">{item.label}</span>
+                        <ChevronDown
+                          className={`h-4 w-4 transition-all duration-300 ${
+                            isAboutDropdownOpen ? "rotate-180 scale-110" : "group-hover:scale-110"
+                          }`}
+                        />
+                        {/* Active indicator */}
+                        {isActive && (
+                          <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                        )}
+                        {/* Hover indicator */}
+                        <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 rounded-full ${
+                          hoveredItem === item.href ? "w-full" : "w-0"
+                        }`}></div>
+                      </div>
 
                     {/* Dropdown Menu */}
                     {isAboutDropdownOpen && (
-                      <div className="absolute top-full left-0 pt-1 w-48">
-                        <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-lg shadow-lg border border-blue-100 dark:border-gray-700 py-2 overflow-hidden">
+                      <div className="absolute top-full left-0 pt-2 w-56 animate-in slide-in-from-top-2 duration-300">
+                        <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-xl rounded-xl shadow-2xl shadow-blue-100/20 dark:shadow-gray-900/30 border border-white/20 dark:border-gray-700/30 py-3 overflow-hidden">
                           {item.dropdownItems?.map((dropdownItem, index) => (
                             <button
                               key={dropdownItem.href}
                               onClick={() => handleDropdownClick(dropdownItem.href, dropdownItem.section)}
-                              className="block w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                              className="group block w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-purple-50/80 dark:hover:from-gray-700/80 dark:hover:to-gray-600/80 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 text-sm relative overflow-hidden"
+                              style={{ animationDelay: `${index * 50}ms` }}
                             >
-                              {dropdownItem.label}
+                              <span className="relative z-10">{dropdownItem.label}</span>
+                              <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-purple-400/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
                             </button>
                           ))}
                         </div>
@@ -140,91 +182,130 @@ const Header = () => {
                 ) : (
                   <Link
                     href={item.href}
-                    className="text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors duration-200 relative group py-2"
+                    className={`font-medium transition-all duration-300 relative group py-2 text-sm lg:text-base group-hover:scale-105 ${
+                      isActive 
+                        ? "text-blue-600 dark:text-blue-400" 
+                        : "text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                    }`}
+                    onMouseEnter={() => setHoveredItem(item.href)}
+                    onMouseLeave={() => setHoveredItem(null)}
                   >
-                    {item.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 group-hover:w-full"></span>
+                    <span className="relative z-10">{item.label}</span>
+                    {/* Active indicator */}
+                    {isActive && (
+                      <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
+                    )}
+                    {/* Hover indicator */}
+                    <div className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-400 transition-all duration-300 rounded-full ${
+                      hoveredItem === item.href ? "w-full" : "w-0"
+                    }`}></div>
                   </Link>
                 )}
               </div>
-            ))}
+            )
+            })}
             <DarkModeToggle />
             <a
               href="https://satupemuda.smplabschooljakarta.sch.id/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg font-semibold transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:shadow-lg hover:shadow-blue-200/50 dark:hover:shadow-blue-400/30 hover:scale-105"
             >
-              SATUPEMUDA
+              <span className="relative z-10">SATUPEMUDA</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
             </a>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-1 sm:space-x-2 flex-shrink-0">
             <DarkModeToggle />
             <button
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="group p-1.5 sm:p-2 rounded-lg hover:bg-gray-100/80 dark:hover:bg-gray-800/80 transition-all duration-300 hover:scale-110"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle mobile menu"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              <div className="relative">
+                {isMenuOpen ? (
+                  <X className="h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 group-hover:rotate-90" />
+                ) : (
+                  <Menu className="h-4 w-4 sm:h-5 sm:w-5 transition-all duration-300 group-hover:scale-110" />
+                )}
+              </div>
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-t border-blue-100 dark:border-gray-700">
-            <div className="py-4 space-y-2">
-              {navItems.map((item) => (
-                <div key={item.href}>
-                  {item.hasDropdown ? (
-                    <div>
-                      <button
-                        className="flex items-center justify-between w-full px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                        onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
+          <div className="md:hidden absolute top-14 sm:top-16 left-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-2xl shadow-blue-100/20 dark:shadow-gray-900/30 border-t border-white/20 dark:border-gray-700/30 animate-in slide-in-from-top-2 duration-300">
+            <div className="py-3 sm:py-4 space-y-1">
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                return (
+                  <div key={item.href} style={{ animationDelay: `${index * 100}ms` }}>
+                    {item.hasDropdown ? (
+                      <div>
+                        <button
+                          className={`flex items-center justify-between w-full px-4 py-3 transition-all duration-300 text-sm sm:text-base group ${
+                            isActive 
+                              ? "text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20" 
+                              : "text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-purple-50/80 dark:hover:from-gray-700/80 dark:hover:to-gray-600/80 hover:text-blue-600 dark:hover:text-blue-400"
+                          }`}
+                          onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
+                        >
+                          <span className="relative z-10">{item.label}</span>
+                          <ChevronDown
+                            className={`h-4 w-4 transition-all duration-300 group-hover:scale-110 ${
+                              isAboutDropdownOpen ? "rotate-180 scale-110" : ""
+                            }`}
+                          />
+                        </button>
+                        {isAboutDropdownOpen && (
+                          <div className="pl-4 space-y-1 bg-gradient-to-r from-blue-50/30 to-purple-50/30 dark:from-gray-800/50 dark:to-gray-700/50 animate-in slide-in-from-top-1 duration-200">
+                            {item.dropdownItems?.map((dropdownItem, dropdownIndex) => (
+                              <button
+                                key={dropdownItem.href}
+                                onClick={() => {
+                                  handleDropdownClick(dropdownItem.href, dropdownItem.section)
+                                  setIsMenuOpen(false)
+                                  setIsAboutDropdownOpen(false)
+                                }}
+                                className="group block w-full text-left px-4 py-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-purple-50/80 dark:hover:from-gray-700/80 dark:hover:to-gray-600/80 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 relative overflow-hidden"
+                                style={{ animationDelay: `${dropdownIndex * 50}ms` }}
+                              >
+                                <span className="relative z-10">{dropdownItem.label}</span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-purple-400/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`block px-4 py-3 transition-all duration-300 text-sm sm:text-base group relative overflow-hidden ${
+                          isActive 
+                            ? "text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20" 
+                            : "text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50/80 hover:to-purple-50/80 dark:hover:from-gray-700/80 dark:hover:to-gray-600/80 hover:text-blue-600 dark:hover:text-blue-400"
+                        }`}
+                        onClick={() => setIsMenuOpen(false)}
                       >
-                        <span>{item.label}</span>
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform ${isAboutDropdownOpen ? "rotate-180" : ""}`}
-                        />
-                      </button>
-                      {isAboutDropdownOpen && (
-                        <div className="pl-4 space-y-1 bg-gray-50/50 dark:bg-gray-800/50">
-                          {item.dropdownItems?.map((dropdownItem) => (
-                            <button
-                              key={dropdownItem.href}
-                              onClick={() => {
-                                handleDropdownClick(dropdownItem.href, dropdownItem.section)
-                                setIsMenuOpen(false)
-                                setIsAboutDropdownOpen(false)
-                              }}
-                              className="block w-full text-left px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                            >
-                              {dropdownItem.label}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-gray-700 dark:hover:to-gray-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </div>
-              ))}
+                        <span className="relative z-10">{item.label}</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/5 to-purple-400/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
+                      </Link>
+                    )}
+                  </div>
+                )
+              })}
               <div className="px-4 pt-2">
                 <a
                   href="https://satupemuda.smplabschooljakarta.sch.id/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary block text-center"
+                  className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs sm:text-sm px-4 py-3 rounded-lg font-semibold transition-all duration-300 hover:from-blue-600 hover:to-purple-600 hover:shadow-lg hover:shadow-blue-200/50 dark:hover:shadow-blue-400/30 hover:scale-105 block text-center"
                 >
-                  SATUPEMUDA
+                  <span className="relative z-10">SATUPEMUDA</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300"></div>
                 </a>
               </div>
             </div>

@@ -3,6 +3,9 @@ import ExtracurricularCategories from "@/components/extracurricular/Extracurricu
 import ExtracurricularAchievements from "@/components/extracurricular/ExtracurricularAchievements"
 import type { Metadata } from "next"
 
+// Enable static generation with revalidation
+export const revalidate = 3600 // Revalidate every hour
+
 export const metadata: Metadata = {
   title: "SMP Labschool Jakarta - Ekstrakurikuler",
   description:
