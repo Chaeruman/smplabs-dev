@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import type { ExtracurricularCategory } from "@/types/extracurricular"
-import { fetchExtracurricularData } from "@/lib/extracurricular-api"
 
 interface UseExtracurricularDataReturn {
   data: ExtracurricularCategory[]
@@ -21,7 +20,19 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
         setLoading(true)
         setError(null)
 
-        const result = await fetchExtracurricularData()
+        // Use internal API route to avoid CORS issues
+        const response = await fetch('/api/extracurricular', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const result = await response.json()
         setData(result)
         console.log("Successfully loaded extracurricular data:", result.length, "categories")
       } catch (err) {
@@ -29,8 +40,7 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
         const errorMessage = err instanceof Error ? err.message : "An unknown error occurred"
         setError(errorMessage)
 
-        // The fetchExtracurricularData function now always returns fallback data
-        // So this catch block should rarely be reached, but we'll keep it as a safety net
+        // Fallback data when API fails
         console.log("Using emergency fallback data in hook")
         setData([
           {

@@ -1,11 +1,35 @@
 import { notFound } from "next/navigation"
-import { fetchExtracurricularData } from "@/lib/extracurricular-api"
 import { ArrowLeft, Users, Clock, MapPin, Award } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import type { ExtracurricularCategory } from "@/types/extracurricular"
 
 // Enable static generation with revalidation
 export const revalidate = 3600 // Revalidate every hour
+
+// Function to fetch data from internal API
+async function fetchExtracurricularData(): Promise<ExtracurricularCategory[]> {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+    const response = await fetch(`${baseUrl}/api/extracurricular`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      next: { revalidate: 3600 }, // Cache for 1 hour
+    })
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    return await response.json()
+  } catch (error) {
+    console.error('Error fetching extracurricular data:', error)
+    // Return empty array as fallback
+    return []
+  }
+}
 
 // Utility function to generate consistent slugs
 function generateSlug(name: string): string {
@@ -39,13 +63,13 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default async function ActivityDetailPage({ params }: PageProps) {
-  const { slug } = params
+  const { slug } = await params
 
   try {
     const categories = await fetchExtracurricularData()
