@@ -181,7 +181,7 @@ export default function ExtracurricularCategories() {
                 {/* Activities Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                   {category.activities.map((activity, activityIndex) => {
-                    const slug = generateSlug(activity.name)
+                    const slug = activity.slug
 
                     // Enhanced parsing function to handle instructor names with academic titles
                     const parseDescription = (desc: string) => {

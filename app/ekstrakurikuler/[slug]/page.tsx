@@ -49,8 +49,7 @@ export async function generateStaticParams() {
 
     categories.forEach((category) => {
       category.activities.forEach((activity) => {
-        const slug = generateSlug(activity.name)
-        params.push({ slug })
+        params.push({ slug: activity.slug })
       })
     })
 
@@ -80,9 +79,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
 
     for (const category of categories) {
       for (const activity of category.activities) {
-        const activitySlug = generateSlug(activity.name)
-
-        if (activitySlug === slug) {
+        if (activity.slug === slug) {
           foundActivity = activity
           foundCategory = category
           break
@@ -95,7 +92,7 @@ export default async function ActivityDetailPage({ params }: PageProps) {
       console.log(`Activity not found for slug: ${slug}`)
       console.log(
         "Available activities:",
-        categories.flatMap((cat) => cat.activities.map((act) => ({ name: act.name, slug: generateSlug(act.name) }))),
+        categories.flatMap((cat) => cat.activities.map((act) => ({ name: act.name, slug: act.slug }))),
       )
       notFound()
     }
@@ -345,12 +342,10 @@ export default async function ActivityDetailPage({ params }: PageProps) {
                       .filter((activity) => activity.name !== foundActivity.name)
                       .slice(0, 3)
                       .map((activity) => {
-                        const relatedSlug = generateSlug(activity.name)
-
                         return (
                           <Link
                             key={activity.name}
-                            href={`/ekstrakurikuler/${relatedSlug}`}
+                            href={`/ekstrakurikuler/${activity.slug}`}
                             className="block p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100"
                           >
                             <div className="font-medium text-gray-800 text-sm mb-1">{activity.name}</div>

@@ -1,4 +1,5 @@
 export interface ExtracurricularActivity {
+  slug: string
   name: string
   description: string
   participants: string

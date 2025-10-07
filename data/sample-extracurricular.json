@@ -6,6 +6,7 @@
     "bgColor": "from-green-50 to-emerald-50",
     "activities": [
       {
+        "slug": "layanan-pendidikan-kepramukaan-soft-skill-life-skill-1",
         "name": "Layanan Pendidikan Kepramukaan (Soft Skill / Life Skill)",
         "description": "Ekstrakurikuler Pramuka",
         "participants": "2187 siswa",
@@ -14,6 +15,7 @@
         "about": null
       },
       {
+        "slug": "paskibra-3",
         "name": "Paskibra",
         "description": "Guru Pembina : Siti Innayatu Sholiha, S.Pd.\r\nTempat : Lapangan Labschool \r\nWaktu : Senin, 15.30 - 17.00 WIB",
         "participants": "122 siswa",
@@ -22,6 +24,7 @@
         "about": null
       },
       {
+        "slug": "jurnalistik-5",
         "name": "Jurnalistik",
         "description": "Guru Pembina : Ramli Jainal Muttaqin, S.Pd.\r\nTempat : Kelas VII E\r\nWaktu : Selasa. 15.30 - 17.00 WIB",
         "participants": "72 siswa",
@@ -30,6 +33,7 @@
         "about": null
       },
       {
+        "slug": "bt2q-6",
         "name": "BT2Q",
         "description": "Guru Pembina : Tina Septiarini, S.Pd.\r\nTempat : Kelas VII D\r\nWaktu : Selasa, 15.30 - 16.30 WIB",
         "participants": "69 siswa",
@@ -38,6 +42,7 @@
         "about": null
       },
       {
+        "slug": "english-club-7",
         "name": "English Club",
         "description": "Guru Pembina : Purwanti, S.Pd.\r\nTempat : Kelas VIII D\r\nWaktu : Selasa, 15.30 - 17.00 WIB",
         "participants": "116 siswa",
@@ -46,6 +51,7 @@
         "about": null
       },
       {
+        "slug": "acolabskomik-16",
         "name": "Acolabs/komik",
         "description": "Guru Pembina : Dra. Lita lestari\r\nTempat : Kelas VII E\r\nWaktu : Kamis, 15.30 -  17.00 WIB",
         "participants": "121 siswa",
@@ -54,6 +60,7 @@
         "about": null
       },
       {
+        "slug": "bahasa-jepang-20",
         "name": "Bahasa Jepang",
         "description": "Guru Pembina : Eni Nurani tartila, S.Pd.\r\nTempat : Kelas VII A\r\nWaktu : Jumat, 13.00 - 14.30 WIB",
         "participants": "150 siswa",
@@ -62,6 +69,7 @@
         "about": null
       },
       {
+        "slug": "kir-22",
         "name": "KIR",
         "description": "Guru Pembina : Dra. Khoirun Nisa P. dan Aura Risna, S.Pd.\r\nTempat : Lab. Fisika\r\nWaktu :  Jumat, 13.00 - 15.00 WIB\r\n",
         "participants": "107 siswa",
@@ -70,6 +78,7 @@
         "about": null
       },
       {
+        "slug": "pramuka-28",
         "name": "Pramuka",
         "description": "Guru Pembina : Amidi Ulani, S.Pd. dan Siti Innayatu Sholiha, S.Pd.\r\nTempat  : Hallma\r\nWaktu : Kamis, 15.30 - 17.00 WIB",
         "participants": "71 siswa",
@@ -86,6 +95,7 @@
     "bgColor": "from-blue-50 to-cyan-50",
     "activities": [
       {
+        "slug": "taekwondo-4",
         "name": "Taekwondo",
         "description": "Guru Pembina : Yusuf Sidarto, M.Pd.\r\nTempat : Lobby  SMP\r\nWaktu : Senin, 15.30 - 17.00 WIB",
         "participants": "79 siswa",
@@ -94,6 +104,7 @@
         "about": null
       },
       {
+        "slug": "menembak-9",
         "name": "Menembak",
         "description": "Guru Pembina : Fardiah Musni, S.Pd. dan Dra. siti Johariyah\r\nTempat : Teater Kecil\r\nWaktu : Selasa, 15.30 - 17.00 WIB",
         "participants": "198 siswa",
@@ -102,6 +113,7 @@
         "about": null
       },
       {
+        "slug": "panahan-13",
         "name": "Panahan",
         "description": "Guru Pembina : Humaedi, S.Pd.\r\nTempat : Teater Kecil\r\nWaktu : Rabu, 15.30 - 17.00 WIB",
         "participants": "99 siswa",
@@ -110,6 +122,7 @@
         "about": null
       },
       {
+        "slug": "bola-basket-14",
         "name": "Bola Basket",
         "description": "Guru Pembina : Diono Yudyarianto, S.Pd. dan Sukarman, M.Pd.\r\nTempat : Hall Labschool \r\nWaktu : \r\nKamis, 16.00 - 18.00 WIB  (Putri Reguler)\r\nJumat, 14.00 - 16.00 WIB (Putra Reguler)\r\nSabtu, 09.00 - 11.00 WIB (Team)",
         "participants": "364 siswa",
@@ -118,6 +131,7 @@
         "about": "<h3>Ekstrakurikuler Bola Basket</h3><p>Ekstrakurikuler bola basket di SMP Labschool Jakarta memberikan kesempatan kepada siswa untuk mengembangkan keterampilan olahraga basket yang komprehensif. Kegiatan ini tidak hanya fokus pada aspek teknis permainan, tetapi juga mengembangkan karakter dan nilai-nilai positif.</p><h4>Program Latihan:</h4><ul><li>Latihan dasar teknik basket</li><li>Strategi permainan tim</li><li>Kondisi fisik dan stamina</li><li>Mental training dan konsentrasi</li></ul><p>Dengan pembina yang berpengalaman, siswa akan mendapatkan pelatihan yang terstruktur dan menyenangkan.</p>"
       },
       {
+        "slug": "futsal-24",
         "name": "Futsal",
         "description": "Guru Pembina : Erwin Marwiansyah, M.Pd. dan Rizqi Taufik Hidayat, S.P:d.\r\nTempat : Lapangan Labschool \r\nWaktu : Jumat, 13.30 - 15.30 WIB (Reguler)\r\nSabtu, 07.00 - 09.00 WIB (Team)",
         "participants": "326 siswa",
@@ -126,6 +140,7 @@
         "about": null
       },
       {
+        "slug": "bulutangkis-27",
         "name": "Bulutangkis",
         "description": "Guru Pembina : Amidi Ulani, S.Pd. & Hilmi Khoirulloh, S.Pd.\r\nTempat : Hall Labschool \r\nWaktu : 07.00 - 09.00 WIB",
         "participants": "196 siswa",
@@ -134,6 +149,7 @@
         "about": null
       },
       {
+        "slug": "pencak-silat-29",
         "name": "Pencak Silat",
         "description": "Guru Pembina : Mazlan, S.Pd.\r\nTempat : Lobby SMP\r\nWaktu : Rabu, 15.30 - 16.30 WIB",
         "participants": "35 siswa",
@@ -150,6 +166,7 @@
     "bgColor": "from-purple-50 to-violet-50",
     "activities": [
       {
+        "slug": "fotografi-8",
         "name": "Fotografi",
         "description": "Guru Pembina : Murdha Nugraha, S.Pd. \r\nTempat : Kelas VIII E\r\nWaktu : Selasa, 15.30 - 17.00 WIB\r\n            ",
         "participants": "52 siswa",
@@ -158,6 +175,7 @@
         "about": null
       },
       {
+        "slug": "esport-mobile-legend-11",
         "name": "Esport Mobile Legend",
         "description": "Guru Pembina : Kevin Archie Luciano dan Abdul Fathir faruqi, S.Pd.\r\nTempat : Kelas VIII G\r\nWaktu : Rabu, 15.30 - 17.00 WIB",
         "participants": "132 siswa",
@@ -166,6 +184,7 @@
         "about": null
       },
       {
+        "slug": "robotik-18",
         "name": "Robotik",
         "description": "Guru Pembina : Drs. Warisno\r\nTempat : Kelas VII C\r\nWaktu : Jumat, 13.00 - 14.00 WIB",
         "participants": "75 siswa",
@@ -174,6 +193,7 @@
         "about": null
       },
       {
+        "slug": "komputer-23",
         "name": "Komputer",
         "description": "Guru Pembina : Dr. Wijaya Kusumah, M.Pd. \r\nTempat : Lab. Komputer\r\nWaktu : Jumat, 13.00 - 15.00 WIB\r\n",
         "participants": "88 siswa",
@@ -190,6 +210,7 @@
     "bgColor": "from-pink-50 to-rose-50",
     "activities": [
       {
+        "slug": "gambang-kromong-10",
         "name": "Gambang Kromong",
         "description": "Guru Pembina : Dyah Wysnuningrum, M.Pd.\r\nTempat : Digital Lounge\r\nWaktu : Rabu, 15.30 - 17.00 WIB",
         "participants": "128 siswa",
@@ -198,6 +219,7 @@
         "about": null
       },
       {
+        "slug": "band-12",
         "name": "Band",
         "description": "Guru Pembina : Agung Hartono, S.Pd.\r\nTempat : Studio Musik\r\nWaktu : Selasa, 15.30 - 17.00 WIB",
         "participants": "132 siswa",
@@ -206,6 +228,7 @@
         "about": null
       },
       {
+        "slug": "ratoh-jaroe-17",
         "name": "Ratoh Jaroe",
         "description": "Guru Pembina : Dra. Titin Setiawati dan Sherly Alifiana, S.Pd. \r\nTempat : Hallma \r\nWaktu : Jumat, 13.00 - 14.00 WIB",
         "participants": "238 siswa",
@@ -214,6 +237,7 @@
         "about": null
       },
       {
+        "slug": "teater-21",
         "name": "Teater",
         "description": "Guru Pembina : Ali Topan, S.Pd. \r\nTempat : Teater TK\r\nWaktu : Jumat, 13.00 - 15.00 WIB",
         "participants": "229 siswa",
@@ -222,6 +246,7 @@
         "about": null
       },
       {
+        "slug": "paduan-suara-25",
         "name": "Paduan Suara",
         "description": "Guru Pembina : Alpiah Pijri, M.Pd. dan Tiara Erviana, S.Pd.\r\nTempat : R. Seni Musik\r\nWaktu : Jumat,13.00 - 14.00 WIB",
         "participants": "77 siswa",
@@ -230,6 +255,7 @@
         "about": null
       },
       {
+        "slug": "seni-tari-tradisional-dan-modern-dance-26",
         "name": "Seni Tari Tradisional  dan Modern Dance",
         "description": "Guru Pembina : Siti Mujanah, M.Pd. dan Mifta Putri Apriyani, S.Pd.\r\n\r\nTempat : Teater Kecil\r\nWaktu : Jumat, 13.00 - 15.00 WIB",
         "participants": "191 siswa",
@@ -246,6 +272,7 @@
     "bgColor": "from-gray-50 to-slate-50",
     "activities": [
       {
+        "slug": "palang-merah-remaja-pmr-30",
         "name": "Palang Merah Remaja (PMR)",
         "description": "Guru Pembina: Ropingah, S.Pd. dan Firdias Astia Safitri, S.P:d.\r\nTempat: Kelas VII C\r\nWaktu: Senin, 15.30-17.00",
         "participants": "13 siswa",
@@ -254,6 +281,7 @@
         "about": null
       },
       {
+        "slug": "native-speaker-31",
         "name": "Native Speaker",
         "description": "Pembina: -",
         "participants": "219 siswa",

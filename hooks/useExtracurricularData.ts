@@ -50,6 +50,7 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
             bgColor: "from-orange-50 to-red-50",
             activities: [
               {
+                slug: "fotografi",
                 name: "Fotografi",
                 description: "Belajar teknik fotografi dan editing foto",
                 participants: "20 siswa aktif",
@@ -58,6 +59,7 @@ export function useExtracurricularData(): UseExtracurricularDataReturn {
                 about: null,
               },
               {
+                slug: "desain-grafis",
                 name: "Desain Grafis",
                 description: "Belajar desain grafis dan multimedia",
                 participants: "24 siswa aktif",
