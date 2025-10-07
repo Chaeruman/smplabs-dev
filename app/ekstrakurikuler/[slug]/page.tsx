@@ -3,6 +3,7 @@ import { ArrowLeft, Users, Clock, MapPin, Award } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import type { ExtracurricularCategory } from "@/types/extracurricular"
+import type { Metadata } from "next"
 
 // Enable static generation with revalidation
 export const revalidate = 3600 // Revalidate every hour
@@ -31,7 +32,7 @@ async function fetchExtracurricularData(): Promise<ExtracurricularCategory[]> {
   }
 }
 
-// Utility function to generate consistent slugs
+// Utility function to generate consistent slugs (kept for backward compatibility)
 function generateSlug(name: string): string {
   return name
     .toLowerCase()
@@ -65,6 +66,74 @@ interface PageProps {
   params: Promise<{
     slug: string
   }>
+}
+
+// Generate metadata for dynamic pages
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  
+  try {
+    const categories = await fetchExtracurricularData()
+    
+    // Find the activity by slug
+    let foundActivity = null
+    let foundCategory = null
+
+    for (const category of categories) {
+      for (const activity of category.activities) {
+        if (activity.slug === slug) {
+          foundActivity = activity
+          foundCategory = category
+          break
+        }
+      }
+      if (foundActivity) break
+    }
+
+    if (!foundActivity || !foundCategory) {
+      return {
+        title: "Kegiatan Tidak Ditemukan | SMP Labschool Jakarta",
+        description: "Kegiatan ekstrakurikuler yang Anda cari tidak ditemukan di SMP Labschool Jakarta.",
+      }
+    }
+
+    return {
+      title: `${foundActivity.name} | SMP Labschool Jakarta`,
+      description: `Informasi lengkap tentang kegiatan ${foundActivity.name} di SMP Labschool Jakarta Rawamangun. ${foundCategory.title} dengan pembina berpengalaman dan program berkualitas.`,
+      keywords: [
+        foundActivity.name,
+        `ekstrakurikuler ${foundActivity.name}`,
+        `kegiatan ${foundActivity.name}`,
+        foundCategory.title,
+        "SMP Labschool Jakarta",
+        "SMP Labsraw",
+        "SMP Labschool Rawamangun",
+        "SMP Labs UNJ",
+      ],
+      openGraph: {
+        title: `${foundActivity.name} | SMP Labschool Jakarta`,
+        description: `Informasi lengkap tentang kegiatan ${foundActivity.name} di SMP Labschool Jakarta Rawamangun. ${foundCategory.title} dengan pembina berpengalaman.`,
+        url: `https://smplabschooljakarta.sch.id/ekstrakurikuler/${slug}`,
+        images: foundActivity.cover ? [
+          {
+            url: foundActivity.cover,
+            width: 1200,
+            height: 630,
+            alt: `${foundActivity.name} - SMP Labschool Jakarta`,
+          }
+        ] : undefined,
+      },
+      alternates: {
+        canonical: `https://smplabschooljakarta.sch.id/ekstrakurikuler/${slug}`,
+      },
+    }
+  } catch (error) {
+    console.error("Error generating metadata:", error)
+    return {
+      title: "Kegiatan Ekstrakurikuler | SMP Labschool Jakarta",
+      description: "Informasi kegiatan ekstrakurikuler di SMP Labschool Jakarta Rawamangun.",
+    }
+  }
 }
 
 export default async function ActivityDetailPage({ params }: PageProps) {
