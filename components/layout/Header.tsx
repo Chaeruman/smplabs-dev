@@ -36,6 +36,7 @@ const Header = () => {
         { href: "/tentang#misi", label: "Misi", section: "misi" },
       ],
     },
+    { href: "/informasi", label: "Informasi Terbaru" },
     { href: "/galeri", label: "Galeri" },
     { href: "/kegiatan", label: "Kegiatan" },
     { href: "/ekstrakurikuler", label: "Ekstrakurikuler" },
@@ -96,35 +97,20 @@ const Header = () => {
           {/* Logo */}
           <Link 
             href="/" 
-            className="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 hover:scale-105 transition-all duration-300 ease-out min-w-0 flex-shrink-0"
-            onMouseEnter={() => setHoveredItem('logo')}
-            onMouseLeave={() => setHoveredItem(null)}
+            className="group flex items-center space-x-1.5 sm:space-x-2 md:space-x-3 hover:scale-,105 transition-all duration-300 ease-out min-w-0 flex-shrink-0"
+           
           >
             <div className="relative flex-shrink-0">
               <Image
-                src="/logo-smp-labschool.png"
+                src="/LOGO-Labs.png"
                 alt="SMP Labschool Jakarta"
-                width={28}
-                height={28}
-                className="rounded-full w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 transition-all duration-300 group-hover:rotate-12 group-hover:shadow-lg group-hover:shadow-blue-200/50 dark:group-hover:shadow-blue-400/30"
+                width={128}
+                height={36}
+                className="transition-all duration-300"
               />
-              {hoveredItem === 'logo' && (
-                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 animate-pulse"></div>
-              )}
+             
             </div>
-            <div className="flex flex-col min-w-0 flex-1">
-              <span className="font-bold text-blue-600 dark:text-blue-400 text-xs xs:text-sm sm:text-base md:text-lg transition-colors duration-300 group-hover:text-blue-700 dark:group-hover:text-blue-300 leading-tight">
-                <span className="hidden xs:inline">SMP </span>
-                <span className="xs:hidden">SMP</span>
-                <span className="block xs:inline">Labschool</span>
-                {hoveredItem === 'logo' && (
-                  <Sparkles className="inline-block ml-1 h-2.5 w-2.5 xs:h-3 xs:w-3 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 text-yellow-500 animate-pulse" />
-                )}
-              </span>
-              <span className="text-[10px] xs:text-xs text-gray-600 dark:text-gray-400 transition-colors duration-300 group-hover:text-gray-700 dark:group-hover:text-gray-300 leading-tight">
-                Jakarta
-              </span>
-            </div>
+          
           </Link>
 
           {/* Desktop Navigation */}
@@ -237,7 +223,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden absolute top-14 sm:top-16 left-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-2xl shadow-blue-100/20 dark:shadow-gray-900/30 border-t border-white/20 dark:border-gray-700/30 animate-in slide-in-from-top-2 duration-300">
+          <div className=" md:hidden absolute top-14 sm:top-16 left-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl shadow-2xl shadow-blue-100/20 dark:shadow-gray-900/30 border-t border-white/20 dark:border-gray-700/30 animate-in slide-in-from-top-2 duration-300">
             <div className="py-3 sm:py-4 space-y-1">
               {navItems.map((item, index) => {
                 const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))

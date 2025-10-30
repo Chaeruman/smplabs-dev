@@ -44,7 +44,7 @@ const NewsSection = () => {
       observer.disconnect()
       clearTimeout(timer)
     }
-  }, [])
+  }, [data])
 
   // Debug logs
   console.log("=== NewsSection Debug ===")
@@ -58,7 +58,7 @@ const NewsSection = () => {
   const fallbackNews = [
     {
       id: 1,
-      title: "Prestasi Gemilang di Olimpiade Matematika Nasional",
+      title: "Prestasi",
       excerpt: "Siswa SMP Labschool Jakarta meraih medali emas dalam kompetisi matematika tingkat nasional.",
       date: "15 Desember 2024",
       image: "/placeholder.svg?height=200&width=300",
@@ -79,7 +79,7 @@ const NewsSection = () => {
       date: "5 Desember 2024",
       image: "/placeholder.svg?height=200&width=300",
       category: "Kegiatan",
-    },
+    },  
   ]
 
   const news = data?.news && data.news.length > 0 ? data.news : fallbackNews
@@ -93,7 +93,7 @@ const NewsSection = () => {
             <div className="h-6 sm:h-8 bg-gray-200 rounded-lg w-48 sm:w-64 mx-auto mb-3 sm:mb-4 animate-pulse"></div>
             <div className="h-3 sm:h-4 bg-gray-100 rounded w-72 sm:w-96 mx-auto animate-pulse"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-6 lg:grid-cols-6 gap-6 sm:gap-8">
             {[...Array(3)].map((_, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 <div className="h-40 sm:h-48 bg-gray-200 animate-pulse"></div>
@@ -126,7 +126,7 @@ const NewsSection = () => {
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 grid-rows-auto">
           {news.map((item, index) => (
             <article
               key={item.id}

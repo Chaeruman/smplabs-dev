@@ -51,7 +51,7 @@ export async function GET() {
       news: [
         {
           id: 1,
-          title: "Prestasi Gemilang di Olimpiade Matematika Nasional",
+          title: "Prestasi ",
           excerpt: "Siswa SMP Labschool Jakarta meraih medali emas dalam kompetisi matematika tingkat nasional.",
           date: "15 Desember 2024",
           image: "/placeholder.svg?height=200&width=300",
@@ -73,6 +73,31 @@ export async function GET() {
           image: "/placeholder.svg?height=200&width=300",
           category: "Kegiatan",
         },
+        {
+          id: 4,
+          title: "Kegiatan Bakti Sosial di Panti Asuhan",
+          excerpt: "Siswa dan guru berpartisipasi dalam kegiatan bakti sosial untuk membantu sesama.",
+          date: "5 Desember 2024",
+          image: "/placeholder.svg?height=200&width=300",
+          category: "Kegiatan",
+        },
+        {
+          id: 5,
+          title: "Kegiatan Bakti Sosial di Panti Asuhan",
+          excerpt: "Siswa dan guru berpartisipasi dalam kegiatan bakti sosial untuk membantu sesama.",
+          date: "5 Desember 2024",
+          image: "/placeholder.svg?height=200&width=300",
+          category: "Kegiatan",
+        },
+        {
+          id: 6,
+          title: "Kegiatan Bakti Sosial di Panti Asuhan",
+          excerpt: "Siswa dan guru berpartisipasi dalam kegiatan bakti sosial untuk membantu sesama.",
+          date: "5 Desember 2024",
+          image: "/placeholder.svg?height=200&width=300",
+          category: "Kegiatan",
+        },
+            
       ],
     }
 

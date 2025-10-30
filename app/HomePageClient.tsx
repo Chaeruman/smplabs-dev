@@ -8,6 +8,7 @@ import NewsSection from "@/components/home/NewsSection"
 import FloatingActionButton from "@/components/ui/FloatingActionButton"
 import ParticleBackground from "@/components/ui/ParticleBackground"
 import ProgressBar from "@/components/ui/ProgressBar"
+import AnnouncementSection from "@/components/home/AnnouncementSection"
 
 export default function HomePageClient() {
   const [isLoading, setIsLoading] = useState(true)
@@ -40,6 +41,7 @@ export default function HomePageClient() {
       <HeroSection />
       <VisionSection />
       <StatsSection />
+      <AnnouncementSection/>
       <NewsSection />
       <FloatingActionButton />
     </div>

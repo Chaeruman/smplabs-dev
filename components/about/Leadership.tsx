@@ -30,29 +30,38 @@ const Leadership = () => {
     {
       name: "Dr. Yati Suwartini, M.Pd",
       position: "Kepala Sekolah",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/kepsek.jpg",
       description:
         "Memimpin dengan visi pendidikan yang inovatif dan berpengalaman lebih dari 20 tahun dalam dunia pendidikan.",
       email: "kepala@smplabschool.sch.id",
-      phone: "(021) 1234-5678",
+      phone: "(021) 4786-0038",
     },
     {
       name: "Pandu Novialdi, M.Pd",
       position: "Wakil Kepala Bidang Akademik",
-      image: "/placeholder.svg?height=300&width=300",
+      image: "/wakasekakademik.jpg",
       description:
         "Mengkoordinasikan program akademik dan pengembangan kurikulum untuk mencapai standar pendidikan terbaik.",
       email: "akademik@smplabschool.sch.id",
-      phone: "(021) 1234-5679",
+      phone: "(021) 4786-0038",
     },
     {
       name: "Trezadigjaya, S.Pd., M.Si",
       position: "Wakil Kepala Bidang Kesiswaan",
-      image: "/placeholder.svg?height=300&width=300",
+      image:"/wakasekkesiswaan.jpg",
       description:
         "Membina dan mengembangkan potensi siswa melalui berbagai kegiatan kesiswaan dan pengembangan karakter.",
       email: "kesiswaan@smplabschool.sch.id",
-      phone: "(021) 1234-5680",
+      phone: "(021) 4786-0038",
+    },
+    {
+      name: "Ahmad Mulyadi, M.Pd",
+      position: "Wakil Kepala Bidang Sarana dan Prasarana",
+      image: "/wakaseksarpras.jpg",
+      description:
+        "Mengelola sarana dan prasarana sekolah demi mencapai visi sekolah dan menciptakan sekolah yang aman.",
+      email: "sarpras@labschool.xyz",
+      phone: "(021) 4786-0038",
     },
   ]
 
@@ -68,7 +77,7 @@ const Leadership = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {leaders.map((leader, index) => (
             <div
               key={index}
@@ -81,7 +90,7 @@ const Leadership = () => {
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative w-full h-80 overflow-hidden">
                 <Image 
                   src={leader.image || "/placeholder.svg"} 
                   alt={leader.name} 

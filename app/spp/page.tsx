@@ -28,8 +28,8 @@ export default function SppPage() {
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Informasi SPP Bulanan
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Sistem Pembayaran Pendidikan untuk siswa SMP Labschool Jakarta Rawamangun
+          <p className="text-xl text-gray-600  mx-auto">
+            Sistem Pembayaran Pendidikan untuk siswa SMP Labschool Jakarta (Rawamangun)
           </p>
         </div>
         {/* Payment Instructions */}
